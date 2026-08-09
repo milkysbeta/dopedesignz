@@ -1,0 +1,32 @@
+{
+  "_comment": "PLACEHOLDER ARTISTS. Replace with real names, bios and links. `royalty` is internal-only and is never rendered on the public site — it is carried through to the fulfilment record so payouts can be reconciled per sale.",
+  "artists": [
+    {
+      "id": "house",
+      "name": "The Awakening Process",
+      "role": "Founder",
+      "location": "Aotearoa New Zealand",
+      "bio": "The house line. Generative and shader-built work — surfaces caught mid-change, pulled off the screen and onto cotton. Every piece starts as something moving.",
+      "links": [{ "label": "Liquid Chrome", "href": "../art/liquid-chrome.html" }],
+      "royalty": 0
+    },
+    {
+      "id": "artist-two",
+      "name": "Second Artist",
+      "role": "Guest artist",
+      "location": "Tāmaki Makaurau",
+      "bio": "Placeholder bio. Swap in the real artist statement — two or three sentences on what they make and why, written in their voice rather than yours.",
+      "links": [],
+      "royalty": 0.15
+    },
+    {
+      "id": "artist-three",
+      "name": "Third Artist",
+      "role": "Guest artist",
+      "location": "Ōtautahi",
+      "bio": "Placeholder bio. Guest artists rotate through the drop schedule — each one gets a profile here and their designs carry their name at checkout.",
+      "links": [],
+      "royalty": 0.15
+    }
+  ]
+}

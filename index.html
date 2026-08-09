@@ -1,962 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-NZ">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-<title>Liquid Chrome</title>
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#000}
-#c{position:fixed!important;inset:0;width:100vw!important;height:100vh!important}
-.pan{position:fixed;z-index:200;background:rgba(4,4,4,.90);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden;backdrop-filter:blur(16px);font-family:'Courier New',monospace;box-shadow:0 4px 32px rgba(0,0,0,.7);min-width:220px}
-#cp{bottom:16px;left:16px}
-#mp{bottom:200px;left:16px}
-.ph{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 11px;border-bottom:1px solid rgba(255,255,255,.055)}
-.ps{font-size:9px;letter-spacing:.13em;color:rgba(255,255,255,.26);white-space:nowrap;transition:color .3s}
-.ps.on{color:rgba(150,255,180,.85)}.ps.hi{color:rgba(120,200,255,.85)}.ps.err{color:rgba(255,90,80,.72)}
-.sb{font:9px/1 'Courier New',monospace;letter-spacing:.1em;color:rgba(255,255,255,.42);background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:3px;padding:4px 10px;cursor:pointer;white-space:nowrap;transition:all .18s}
-.sb:hover:not(:disabled){background:rgba(255,255,255,.11);color:#fff}.sb:disabled{opacity:.32;cursor:default}
-#ml{padding:8px 11px 10px;display:none;flex-direction:column;gap:6px}
-.lr{display:flex;align-items:center;gap:7px}
-.ll{font-size:8px;letter-spacing:.12em;color:rgba(255,255,255,.22);width:34px}
-.lt{flex:1;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
-.lf{height:100%;width:0%;border-radius:2px;transition:width .04s linear}
-#vf{background:linear-gradient(90deg,rgba(140,220,255,.5),rgba(200,255,255,.9))}
-#bf{background:linear-gradient(90deg,rgba(255,140,100,.5),rgba(255,210,120,.9))}
-#mof{background:linear-gradient(90deg,rgba(180,255,140,.5),rgba(220,255,180,.9))}
-#mr{padding:6px 11px 8px;display:none}
-#cv{position:relative;width:220px;height:165px;display:none}
-#vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
-#ov{position:absolute;inset:0;width:100%;height:100%;display:block}
-#hint{position:fixed;bottom:16px;right:16px;z-index:200;color:rgba(255,255,255,.11);font:10px/2.1 'Courier New',monospace;letter-spacing:.07em;text-align:right;pointer-events:none}
-#startup{position:fixed;inset:0;z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;pointer-events:all}
-#startup-btn{font:13px/1 'Courier New',monospace;letter-spacing:.18em;color:rgba(255,255,255,.85);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:14px 32px;cursor:pointer;transition:all .25s;text-transform:uppercase}
-#startup-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff}
-#startup-hint{font:9px/1 'Courier New',monospace;letter-spacing:.14em;color:rgba(255,255,255,.22);text-align:center}
-#startup-skip{font:8px/1 'Courier New',monospace;letter-spacing:.12em;color:rgba(255,255,255,.18);background:none;border:none;cursor:pointer;margin-top:6px;text-decoration:underline;text-underline-offset:3px}
-#startup-skip:hover{color:rgba(255,255,255,.42)}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Awakening Process — Wearable generative art, printed in Aotearoa</title>
+<meta name="description" content="Limited-run tees, hoodies, jackets and hats carrying generative and shader-built artwork. Printed to order in Tāmaki Makaurau by Print Poppa and shipped New Zealand wide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body data-page="index" data-base="">
 
-<div id="mp" class="pan">
-  <div class="ph"><span id="ms" class="ps">◌ MIC OFF</span><button id="mb" class="sb">MIC</button></div>
-  <div id="ml">
-    <div class="lr"><span class="ll">VOL</span><div class="lt"><div id="vf" class="lf"></div></div></div>
-    <div class="lr"><span class="ll">BASS</span><div class="lt"><div id="bf" class="lf"></div></div></div>
+<header data-site-header></header>
+
+<main>
+
+  <!-- Hero ------------------------------------------------------------- -->
+  <section class="hero" data-liquid-chrome="hero">
+    <div class="wrap hero__inner">
+      <p class="eyebrow">Aotearoa New Zealand &middot; Printed to order</p>
+      <h1 class="display hero__title">Wearable<br><span class="chrome-text">generative</span><br>art</h1>
+      <p class="lede">Surfaces caught mid-change — shader fields, interference patterns and liquid
+        metal — pulled off the screen and printed onto heavyweight cotton. Every piece is made
+        after you order it, so nothing is wasted and nothing is warehoused.</p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="shop.html">Shop the range</a>
+        <a class="btn" href="art/liquid-chrome.html">Play with the source</a>
+      </div>
+    </div>
+    <span class="hero__scroll">Scroll</span>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Printed in Tāmaki Makaurau</span><span>&bull;</span>
+      <span>Direct to garment</span><span>&bull;</span>
+      <span>No minimums, no dead stock</span><span>&bull;</span>
+      <span>Free NZ shipping over $180</span><span>&bull;</span>
+      <span>Artists paid per sale</span><span>&bull;</span>
+      <span>Printed in Tāmaki Makaurau</span><span>&bull;</span>
+      <span>Direct to garment</span><span>&bull;</span>
+      <span>No minimums, no dead stock</span><span>&bull;</span>
+      <span>Free NZ shipping over $180</span><span>&bull;</span>
+      <span>Artists paid per sale</span><span>&bull;</span>
+    </div>
   </div>
-</div>
 
-<div id="cp" class="pan">
-  <div class="ph"><span id="cs" class="ps">◌ CAMERA OFF</span><button id="cb" class="sb">START CAMERA</button></div>
-  <div id="mr" class="lr"><span class="ll">MOTION</span><div class="lt"><div id="mof" class="lf"></div></div></div>
-  <div id="cv">
-    <video id="vid" autoplay playsinline muted></video>
-    <canvas id="ov" width="220" height="165"></canvas>
-  </div>
-</div>
-
-<div id="startup">
-  <button id="startup-btn">◎ &nbsp; ACTIVATE CAMERA</button>
-  <div id="startup-hint">M · show controls &nbsp;·&nbsp; G · GUI panel</div>
-  <button id="startup-skip">skip &rarr; no camera</button>
-</div>
-
-<div id="hint" style="display:none">M · hide all<br>G · GUI<br>C · camera<br>U · URL</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lil-gui@0.19/dist/lil-gui.umd.min.js"></script>
-<script>
-'use strict';
-
-/* ─── VERTEX ───────────────────────────────────────── */
-const VERT=`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}`;
-
-/* ─── FRAGMENT ─────────────────────────────────────── */
-const FRAG=`
-precision highp float;
-#define NW 8
-
-uniform float uTime;
-uniform vec2  uRes;
-uniform vec2  uMouse;
-
-/* surface */
-uniform float uAmbient;
-uniform float uReflect;
-uniform float uFresnel;
-
-/* colour */
-uniform float uIriMode;
-uniform float uIriAmt;
-uniform float uIriBands;
-uniform float uHueShift;
-uniform float uIriSat;
-uniform float uPrism;
-uniform float uFlare;
-
-/* glass */
-uniform float uOpacity;
-uniform float uEffBlend;
-uniform float uRefr;
-
-/* camera */
-uniform float uPitch;
-uniform float uAzimuth;
-
-/* background A */
-uniform sampler2D uBgA;
-uniform float uHasBgA;
-uniform float uBlendA;
-uniform float uMirrorA;
-uniform float uSatA;
-uniform float uSharpA;
-
-/* background B */
-uniform sampler2D uBgB;
-uniform float uHasBgB;
-uniform float uBlendB;
-uniform float uMirrorB;
-uniform float uSatB;
-
-/* mic */
-uniform float uMicVol;
-uniform float uMicBass;
-
-/* grain */
-uniform float uGrainStr;
-uniform float uGrainSize;
-
-/* waves */
-uniform vec2  uWP[NW];
-uniform float uWB[NW];
-uniform float uWS[NW];
-uniform vec2  uWV[NW];
-uniform float uWK[NW];
-uniform float uWSpd;
-uniform float uWSize;
-uniform float uWSoft;
-uniform float uSplash;
-
-/* momentum */
-uniform vec2  uMomP;
-uniform float uMomS;
-
-varying vec2 vUv;
-
-/* ── Simplex noise 3D ─────────────────────────────── */
-vec4 p4(vec4 x){return mod(((x*34.)+1.)*x,289.);}
-vec4 ti(vec4 r){return 1.79284291400159-0.85373472095314*r;}
-float sn(vec3 v){
-  const vec2 C=vec2(1./6.,1./3.);const vec4 D=vec4(0.,.5,1.,2.);
-  vec3 i=floor(v+dot(v,C.yyy)),x0=v-i+dot(i,C.xxx);
-  vec3 g=step(x0.yzx,x0.xyz),l=1.-g;
-  vec3 i1=min(g.xyz,l.zxy),i2=max(g.xyz,l.zxy);
-  vec3 x1=x0-i1+C.xxx,x2=x0-i2+C.yyy,x3=x0-D.yyy;
-  i=mod(i,289.);
-  vec4 pp=p4(p4(p4(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
-  float n_=1./7.;vec3 ns=n_*D.wyz-D.xzx;
-  vec4 j=pp-49.*floor(pp*ns.z*ns.z);
-  vec4 x_=floor(j*ns.z),y_=floor(j-7.*x_);
-  vec4 x=x_*ns.x+ns.yyyy,y=y_*ns.x+ns.yyyy,h=1.-abs(x)-abs(y);
-  vec4 b0=vec4(x.xy,y.xy),b1=vec4(x.zw,y.zw);
-  vec4 s0=floor(b0)*2.+1.,s1=floor(b1)*2.+1.,sh=-step(h,vec4(0.));
-  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy,a1=b1.xzyw+s1.xzyw*sh.zzww;
-  vec3 q0=vec3(a0.xy,h.x),q1=vec3(a0.zw,h.y),q2=vec3(a1.xy,h.z),q3=vec3(a1.zw,h.w);
-  vec4 nm=ti(vec4(dot(q0,q0),dot(q1,q1),dot(q2,q2),dot(q3,q3)));
-  q0*=nm.x;q1*=nm.y;q2*=nm.z;q3*=nm.w;
-  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);m=m*m;
-  return 42.*dot(m*m,vec4(dot(q0,x0),dot(q1,x1),dot(q2,x2),dot(q3,x3)));
-}
-
-/* ── Wave event ────────────────────────────────────── */
-float waveAt(vec2 p,vec2 wp,float age,float str,vec2 wv,float seed){
-  if(age>55.||str<.001)return 0.;
-  vec2 d=p-wp;
-  float dist=length(d)+.0001;
-  float ang=atan(d.y,d.x);
-  float wobble=1.+sin(ang*3.+seed)*.04+sin(ang*7.+seed*2.1)*.02;
-  float od=dist*wobble;
-  float radius=age*.55*uWSpd;
-  float sd=od/max(uWSize,.1);
-  float df=sd-radius;
-  float se=.9/max(uWSoft,.1);
-  float wf=2.8/max(uWSize,.1);
-  float ring=cos(df*wf)*exp(-df*df*se);
-  float rH=ring*smoothstep(6.,2.,radius);
-  float cap=sin(od*2.-age*1.6)*exp(-od*.85)*.16*smoothstep(0.,1.2,age);
-  return(rH+cap)*str*exp(-age*.048)*.11*uSplash;
-}
-
-/* ── Height field ──────────────────────────────────── */
-float H(vec2 p,float t){
-  /* Ambient drift — zero when uAmbient=0 */
-  vec2 adv=vec2(cos(t*.018)*.06,sin(t*.024)*.05)*uAmbient;
-  vec3 q=vec3((p+adv)*.55,t*.010);
-  float h=(sn(q)*.65+sn(q*2.2+1.93)*.35)*uAmbient*.50;
-
-  /* Wave events */
-  for(int i=0;i<NW;i++){
-    float age=t-uWB[i];
-    if(age>=0.&&age<55.)h+=waveAt(p,uWP[i],age,uWS[i],uWV[i],uWK[i]);
-  }
-
-  /* Momentum ghost */
-  if(uMomS>.01){
-    float r=length(p-uMomP);
-    h+=sin(r*2.2-t*2.0)*exp(-r*.8)*uMomS*.04;
-  }
-
-  /* Mic */
-  float cr=length(p)*5.5;
-  h+=sin(cr-t*7.)*exp(-cr*.42)*uMicBass*uSplash*.32;
-  h+=sin(cr*1.7-t*12.)*exp(-cr*.70)*uMicVol*uSplash*.16;
-  return h;
-}
-
-vec3 surfN(vec2 p,float h0,float t){
-  float e=.006;
-  return normalize(vec3(-(H(p+vec2(e,0.),t)-h0)/e,10.,-(H(p+vec2(0.,e),t)-h0)/e));
-}
-
-/* ── Studio lights ─────────────────────────────────── */
-float studio(vec3 d){
-  float c=0.;
-  c+=pow(max(0.,dot(d,normalize(vec3(1.,2.2,.6)))),110.)*3.8+pow(max(0.,dot(d,normalize(vec3(1.,2.2,.6)))),7.)*.05;
-  c+=pow(max(0.,dot(d,normalize(vec3(-1.4,1.8,-.4)))),75.)*2.2+pow(max(0.,dot(d,normalize(vec3(-1.4,1.8,-.4)))),5.)*.03;
-  c+=pow(max(0.,dot(d,normalize(vec3(.2,3.,1.3)))),55.)*1.5;
-  c+=max(0.,d.y)*.055;
-  return c;
-}
-
-/* ── Thin-film iridescence ─────────────────────────── */
-vec3 thinFilm(float d,float cosA){
-  float opd=2.*1.43*d*max(.12,cosA);
-  vec3 c=vec3(.5+.5*cos(opd*9.666),.5+.5*cos(opd*11.636),.5+.5*cos(opd*14.286));
-  return c*c*(3.-2.*c);
-}
-
-vec3 hueRot(vec3 col,float sh){
-  float s=sin(sh*6.2832),cc=cos(sh*6.2832);
-  return clamp(mat3(.299+.701*cc+.168*s,.299-.299*cc-.328*s,.299-.299*cc+1.25*s,
-                    .587-.587*cc+.330*s,.587+.413*cc+.035*s,.587-.587*cc-.807*s,
-                    .114-.114*cc-.497*s,.114-.114*cc+.292*s,.114+.886*cc-.443*s)*col,0.,1.);
-}
-
-vec3 iriColor(float h,float NoV,float waveE){
-  float d=(h*.5+.5)*uIriBands*4.+uIriBands*2.2;
-  vec3 col;
-  if(uIriMode<.5)      col=thinFilm(d,NoV);
-  else if(uIriMode<1.5)col=hueRot(thinFilm(d,NoV),d*.5+uHueShift);
-  else if(uIriMode<2.5){vec3 b=thinFilm(d,NoV);float l=dot(b,vec3(.299,.587,.114));col=mix(vec3(l),b,pow(1.-NoV,2.5)*.6);}
-  else if(uIriMode<3.5){float ph=fract(d*3.+uHueShift)*6.2832;float bw=smoothstep(0.,.15,fract(d*3.+uHueShift))*smoothstep(.30,.15,fract(d*3.+uHueShift));col=vec3(.5+.5*cos(ph),.5+.5*cos(ph+2.094),.5+.5*cos(ph+4.189))*bw*1.8;}
-  else{col=thinFilm(d,NoV);float l=dot(col,vec3(.299,.587,.114));col=l+(col-l)*2.5;col=clamp(col,0.,1.);}
-  col=hueRot(col,uHueShift);
-  float l2=dot(col,vec3(.299,.587,.114));
-  col=mix(vec3(l2),col,uIriSat);
-  return col*(1.+waveE*.55);
-}
-
-/* ── Lens flare ────────────────────────────────────── */
-vec3 lensFlare(vec3 r){
-  if(uFlare<.01)return vec3(0.);
-  vec3 f=vec3(0.);
-  vec3 L1=normalize(vec3(1.,2.2,.6)),L2=normalize(vec3(-1.4,1.8,-.4));
-  for(int i=0;i<2;i++){
-    vec3 L=i==0?L1:L2;float dp=max(0.,dot(r,L)),di=1.-dp;
-    float g=smoothstep(.45,.80,dp);
-    f+=vec3(pow(dp,200.)*6.);
-    vec3 rc=vec3(sin(di*58.)*exp(-di*9.)*.7+sin(di*38.)*exp(-di*5.)*.3,
-                 sin(di*96.)*exp(-di*16.)*.6+sin(di*58.)*exp(-di*9.)*.2,
-                 sin(di*96.)*exp(-di*16.)*.8+sin(di*38.)*exp(-di*5.)*.2)*g*.55;
-    f+=max(vec3(0.),rc);
-  }
-  return f*uFlare*uReflect;
-}
-
-/* ── Crystal prism edges ───────────────────────────── */
-vec3 prism(vec3 rd,vec3 N,float NoV){
-  float g=pow(1.-NoV,4.)*uPrism*.005;
-  if(g<.0003)return vec3(0.);
-  vec3 t=normalize(cross(N,rd));
-  float eR=studio(reflect(normalize(rd+t*g*1.),N));
-  float eOY=studio(reflect(normalize(rd+t*g*.38),N));
-  float eG=studio(reflect(rd,N));
-  float eCB=studio(reflect(normalize(rd-t*g*.46),N));
-  float eV=studio(reflect(normalize(rd-t*g*1.08),N));
-  return vec3(eR*.68+eOY*.32,eG*.62+eOY*.22+eCB*.16,eCB*.38+eV*.62)-vec3(eG);
-}
-
-/* ── Background ────────────────────────────────────── */
-vec3 bgSample(vec2 uv){
-  vec3 col=vec3(.005);
-  /* Layer A */
-  if(uHasBgA>.5){
-    vec2 a=uv;if(uMirrorA>.5)a.x=1.-a.x;a=clamp(a,.001,.999);
-    vec2 tx=1.5/uRes;
-    vec3 c=texture2D(uBgA,a).rgb;
-    vec3 bl=(texture2D(uBgA,clamp(a+tx*vec2(1.,1.),.001,.999)).rgb
-            +texture2D(uBgA,clamp(a+tx*vec2(-1.,1.),.001,.999)).rgb
-            +texture2D(uBgA,clamp(a+tx*vec2(1.,-1.),.001,.999)).rgb
-            +texture2D(uBgA,clamp(a+tx*vec2(-1.,-1.),.001,.999)).rgb)*.25;
-    c=c+(c-bl)*(uSharpA-1.)*1.8;
-    float la=dot(c,vec3(.299,.587,.114));
-    col=mix(col,clamp(mix(vec3(la),c,uSatA),0.,1.),uBlendA);
-  }
-  /* Layer B */
-  if(uHasBgB>.5){
-    vec2 b=uv;if(uMirrorB>.5)b.x=1.-b.x;b=clamp(b,.001,.999);
-    vec3 c2=texture2D(uBgB,b).rgb;
-    float lb=dot(c2,vec3(.299,.587,.114));
-    col=mix(col,clamp(mix(vec3(lb),c2,uSatB),0.,1.),uBlendB);
-  }
-  return col;
-}
-
-/* ── Grain ─────────────────────────────────────────── */
-float grain(vec2 uv,float t){
-  vec2 px=floor(uv*uRes);
-  float fr=fract(floor(t*24.)*0.6180339887)*9999.;
-  vec3 q=vec3(px.x,px.y,px.x+px.y+fr);
-  q=fract(q*vec3(443.8975,397.2973,491.1871));
-  q+=dot(q,q.zxy+31.3179);
-  float g=(fract(q.x*q.y)+fract(q.y*q.z)+fract(q.z*q.x))*.333-.5;
-  return g/max(uGrainSize,.5);
-}
-
-/* ── Main ──────────────────────────────────────────── */
-void main(){
-  float asp=uRes.x/uRes.y;
-  vec2 sc=(vUv-.5)*vec2(asp,1.);
-  float az=uAzimuth*6.2832;
-  sc=vec2(sc.x*cos(az)-sc.y*sin(az),sc.x*sin(az)+sc.y*cos(az));
-  sc.y*=1.+sin(uPitch*.9)*1.6;
-  vec2 p=sc*(1.4+uPitch*1.8)+(uMouse-.5)*.35;
-
-  float h0=H(p,uTime);
-  vec3 N=surfN(p,h0,uTime);
-  vec3 rd=normalize(vec3(sc*.20,1.));
-  float NoV=max(0.,dot(N,-rd));
-  float fres=pow(1.-NoV,uFresnel);
-  vec3 refl=reflect(rd,N);
-  float chRaw=studio(refl)*uReflect;
-
-  /* Wave energy at this pixel */
-  float wE=0.;
-  for(int i=0;i<NW;i++){
-    float age=uTime-uWB[i];
-    if(age>=0.&&age<55.)wE+=exp(-length(p-uWP[i])*1.5)*exp(-age*.08)*uWS[i];
-  }
-  wE=clamp(wE,0.,1.5);
-
-  /* Background with chromatic refraction */
-  float ca=uPrism*.0028;
-  vec2 w=N.xz*uRefr*.12;
-  vec3 bgCol;
-  if(uHasBgA>.5||uHasBgB>.5){
-    vec2 wR=clamp(vUv+w*(1.+ca),.001,.999);
-    vec2 wG=clamp(vUv+w,.001,.999);
-    vec2 wB=clamp(vUv+w*(1.-ca),.001,.999);
-    /* R channel from wR, G from wG, B from wB — per-channel chromatic refraction */
-    vec3 bA_R=bgSample(wR);
-    vec3 bA_G=bgSample(wG);
-    vec3 bA_B=bgSample(wB);
-    bgCol=vec3(bA_R.r,bA_G.g,bA_B.b);
-  } else {
-    bgCol=vec3(.005);
-  }
-
-  /* Iridescence */
-  vec2 fAdv=vec2(sin(uTime*.016),cos(uTime*.020))*.09;
-  float bigP=sn(vec3((p+fAdv)*.17,uTime*.003));
-  float medP=sn(vec3((p+fAdv*.4)*.48,uTime*.008))*.65;
-  float filmH=h0*.55+bigP*.14+medP*.04;
-
-  vec3 iriCol=iriColor(filmH,NoV,wE);
-
-  float iriNull=abs(sin(filmH*uIriBands*14.));
-  float avgCov=smoothstep(.05,.35,iriNull);
-  float waveGate=clamp(wE*1.8,0.,1.);
-  float edgeGlow=pow(fres,2.8)*.18;
-  float iriStr=uIriAmt*(waveGate*avgCov*.92+edgeGlow);
-  iriStr=clamp(iriStr,0.,.97);
-
-  vec3 iriSurf=iriCol*(.45+chRaw*.55);
-  vec3 surf=mix(vec3(chRaw)*.5,iriSurf,iriStr);
-  surf+=prism(rd,N,NoV)*(1.-iriStr*.6);
-  surf+=lensFlare(refl);
-
-  surf=surf/(surf+1.);
-  surf=pow(max(surf,0.),vec3(1./2.2));
-  float bl=dot(surf,vec3(.299,.587,.114));
-  surf+=vec3(pow(max(bl-.62,0.)*2.6,2.2))*.14;
-
-  float alpha=mix(uOpacity,1.,fres*.97)*uEffBlend;
-  vec3 col=mix(bgCol,surf,alpha);
-
-  col=clamp(col+grain(vUv,uTime)*uGrainStr,0.,1.);
-  col*=1.-smoothstep(.55,1.42,length(vUv-.5)*2.)*.78;
-  gl_FragColor=vec4(col,1.);
-}
-`;
-
-/* ─── THREE.JS ─────────────────────────────────────── */
-const renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.0));
-renderer.setSize(innerWidth,innerHeight);
-renderer.domElement.id='c';
-document.body.insertBefore(renderer.domElement,document.body.firstChild);
-const scene=new THREE.Scene(),ortho=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
-
-const nullTex=new THREE.DataTexture(new Uint8Array([0,0,0,255]),1,1,THREE.RGBAFormat);
-nullTex.needsUpdate=true;
-
-const NW=8;
-const wPos  =Array.from({length:NW},()=>new THREE.Vector2(.5,.5));
-const wBirth=new Array(NW).fill(-999);
-const wStr  =new Array(NW).fill(0);
-const wVel  =Array.from({length:NW},()=>new THREE.Vector2(0,0));
-const wSeed =new Array(NW).fill(0);
-
-const U={
-  uTime:    {value:0},
-  uRes:     {value:new THREE.Vector2(innerWidth,innerHeight)},
-  uMouse:   {value:new THREE.Vector2(.5,.5)},
-  uAmbient: {value:0},
-  uReflect: {value:4.5},
-  uFresnel: {value:8.0},
-  uIriMode:    {value:1},     /* holographic */
-  uIriAmt:     {value:1.0},
-  uIriBands:   {value:2.0},
-  uHueShift:   {value:0.85},
-  uIriSat:     {value:1.4},
-  uPrism:      {value:14.0},
-  uFlare:      {value:2.0},
-  uOpacity:    {value:1.0},
-  uEffBlend:   {value:0.0},
-  uRefr:       {value:2.02},
-  uPitch:      {value:0.2},
-  uAzimuth:    {value:0.0},
-  uBgA:        {value:nullTex},
-  uHasBgA:     {value:0},
-  uBlendA:     {value:1.0},
-  uMirrorA:    {value:1},
-  uSatA:       {value:1.8},
-  uSharpA:     {value:2.24},
-  uBgB:        {value:nullTex},
-  uHasBgB:     {value:0},
-  uBlendB:     {value:0.5},
-  uMirrorB:    {value:0},
-  uSatB:       {value:1},
-  uMicVol:     {value:0},
-  uMicBass:    {value:0},
-  uGrainStr:   {value:0.02},
-  uGrainSize:  {value:0.5},
-  uWP:         {value:wPos},
-  uWB:         {value:wBirth},
-  uWS:         {value:wStr},
-  uWV:         {value:wVel},
-  uWK:         {value:wSeed},
-  uWSpd:       {value:1.4},
-  uWSize:      {value:0.4},
-  uWSoft:      {value:0.85},
-  uSplash:     {value:1.8},
-  uMomP:       {value:new THREE.Vector2(.5,.5)},
-  uMomS:       {value:0},
-};
-
-scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),
-  new THREE.ShaderMaterial({uniforms:U,vertexShader:VERT,fragmentShader:FRAG})));
-
-window.addEventListener('resize',()=>{
-  renderer.setSize(innerWidth,innerHeight);
-  U.uRes.value.set(innerWidth,innerHeight);
-});
-
-/* ─── WAVE EVENTS ──────────────────────────────────── */
-let wHead=0;
-const MIN_WDIST=0.10;
-let lastWPos={x:-9,y:-9};
-
-function addWave(sx,sy,str,vx,vy){
-  const now=clock.getElapsedTime();
-  if(Math.hypot(sx-lastWPos.x,sy-lastWPos.y)<MIN_WDIST)return;
-  lastWPos={x:sx,y:sy};
-  const slot=wHead%NW; wHead++;
-  const scl=1.4+U.uPitch.value*1.8;
-  wPos[slot].set((sx-.5)*scl,(sy-.5)*scl);
-  wBirth[slot]=now;
-  wStr[slot]=Math.min(str,1);
-  wVel[slot].set(vx,vy);
-  wSeed[slot]=Math.random()*13.7;
-  U.uWP.value=wPos; U.uWB.value=wBirth;
-  U.uWS.value=wStr; U.uWV.value=wVel; U.uWK.value=wSeed;
-}
-
-/* ─── MOMENTUM ─────────────────────────────────────── */
-let momentum=0,momVx=0,momVy=0,momX=.5,momY=.5;
-let momDecay=Math.log(2)/2, microInt=0.5, microTimer=0;
-
-/* ─── URL PRESETS ──────────────────────────────────── */
-const SKIP=new Set(['uTime','uRes','uMouse','uBgA','uHasBgA','uBgB','uHasBgB',
-  'uMicVol','uMicBass','uWP','uWB','uWS','uWV','uWK','uMomP','uMomS']);
-
-function saveURL(){
-  const s={};
-  Object.keys(U).forEach(k=>{if(!SKIP.has(k)&&typeof U[k].value==='number')s[k]=+U[k].value.toFixed(4);});
-  s._ms=motionSens; s._mics=micSens; s._momSecs=Math.round(Math.log(2)/momDecay);
-  const url=location.href.split('#')[0]+'#'+btoa(JSON.stringify(s));
-  navigator.clipboard.writeText(url).then(()=>toast('URL copied')).catch(()=>prompt('Copy:',url));
-}
-function loadURL(){
-  if(!location.hash)return;
-  try{
-    const s=JSON.parse(atob(location.hash.slice(1)));
-    Object.keys(s).forEach(k=>{if(!k.startsWith('_')&&U[k]&&typeof s[k]==='number')U[k].value=s[k];});
-    if(s._ms)motionSens=s._ms;
-    if(s._mics)micSens=s._mics;
-    if(s._momSecs){momDecay=Math.log(2)/s._momSecs;microInt=Math.max(s._momSecs/15,.5);}
-    setTimeout(()=>gui&&gui.controllersRecursive().forEach(c=>{try{c.updateDisplay();}catch(e){}}),200);
-  }catch(e){}
-}
-function toast(msg){
-  const t=document.createElement('div');
-  Object.assign(t.style,{position:'fixed',top:'14px',left:'50%',transform:'translateX(-50%)',
-    background:'rgba(10,10,10,.92)',color:'rgba(255,255,255,.85)',font:'10px/1.6 Courier New',
-    letterSpacing:'.1em',padding:'7px 18px',borderRadius:'4px',border:'1px solid rgba(255,255,255,.1)',
-    zIndex:'999',pointerEvents:'none',transition:'opacity .4s'});
-  t.textContent=msg;document.body.appendChild(t);
-  setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),500);},2200);
-}
-document.addEventListener('keydown',e=>{if(e.key==='u'||e.key==='U')saveURL();});
-
-/* ─── GUI ──────────────────────────────────────────── */
-let gui;
-function buildGUI(){
-  gui=new lil.GUI({title:'✦ LIQUID CHROME'});
-  Object.assign(gui.domElement.style,{position:'fixed',top:'12px',right:'12px',zIndex:'200'});
-
-  const sf=gui.addFolder('SURFACE');
-  sf.add(U.uAmbient,'value',0,1,.01).name('Ambient Movement');
-  sf.add(U.uReflect,'value',0,8,.05).name('Reflectivity');
-  sf.add(U.uFresnel,'value',1,10,.1).name('Fresnel Power');
-
-  const cl=gui.addFolder('COLOUR · RAINBOW');
-  cl.add(U.uIriMode,'value',{Oil:0,Holographic:1,Chrome:2,Prism:3,Soap:4}).name('Mode');
-  cl.add(U.uIriAmt,   'value',0,1,.01).name('Iridescence Amt');
-  cl.add(U.uIriBands, 'value',.01,2,.01).name('Band Frequency');
-  cl.add(U.uHueShift, 'value',0,1,.01).name('Hue Shift');
-  cl.add(U.uIriSat,   'value',0,4,.01).name('Saturation');
-  cl.add(U.uPrism,    'value',0,28,.05).name('Crystal Edges');
-  cl.add(U.uFlare,    'value',0,3,.01).name('Lens Flare');
-  cl.open();
-
-  const cv=gui.addFolder('CAMERA · VIEW');
-  cv.add(U.uPitch,   'value',0,1,.01).name('Tilt / Pitch');
-  cv.add(U.uAzimuth, 'value',0,1,.01).name('Rotation');
-  cv.open();
-
-  const bA=gui.addFolder('BACKGROUND  A');
-  bA.add(U.uBlendA, 'value',0,1,.01).name('A Blend');
-  bA.add(U.uSatA,   'value',0,3,.01).name('A Saturation');
-  bA.add(U.uSharpA, 'value',0,3,.01).name('A Sharpness');
-  bA.add({mirrorA:false},'mirrorA').name('Mirror A').onChange(v=>U.uMirrorA.value=v?1:0);
-  bA.open();
-
-  const bB=gui.addFolder('BACKGROUND  B');
-  bB.add(U.uBlendB,'value',0,1,.01).name('B Blend');
-  bB.add(U.uSatB,  'value',0,3,.01).name('B Saturation');
-  bB.add({mirrorB:false},'mirrorB').name('Mirror B').onChange(v=>U.uMirrorB.value=v?1:0);
-  bB.add({camB:()=>loadBBWebcam()},'camB').name('B → Webcam');
-  bB.add({imgB:()=>imgInputB.click()},'imgB').name('B → Image');
-  bB.add({clrB:()=>clearBB()},'clrB').name('B → Clear');
-  bB.open();
-
-  const gr=gui.addFolder('FILM GRAIN');
-  gr.add(U.uGrainStr, 'value',0,.4,.005).name('Grain Strength');
-  gr.add(U.uGrainSize,'value',.25,5,.05).name('Grain Size');
-
-  const sp=gui.addFolder('SPLASH · MOTION · MIC');
-  const spP={mSens:12.2,micSens:10,momSecs:2};
-  sp.add(U.uSplash,'value',0,6,.05).name('Splash Strength');
-  sp.add(U.uWSize, 'value',.1,4,.05).name('Ripple Size');
-  sp.add(U.uWSoft, 'value',.1,4,.05).name('Ripple Softness');
-  sp.add(U.uWSpd,  'value',.1,4,.05).name('Wave Speed');
-  sp.add(spP,'momSecs',2,90,1).name('Inertia (s)').onChange(v=>{momDecay=Math.log(2)/v;microInt=Math.max(v/15,.5);});
-  sp.add(spP,'mSens',.5,20,.1).name('Motion Sensitivity').onChange(v=>motionSens=v);
-  sp.add(spP,'micSens',.5,10,.1).name('Mic Sensitivity').onChange(v=>micSens=v);
-  sp.open();
-
-  const tx=gui.addFolder('TRANSPARENCY');
-  tx.add(U.uEffBlend,'value',0,1,.01).name('Effect Opacity ↑');
-  tx.add(U.uOpacity, 'value',0,1,.01).name('Surface Opacity');
-  tx.add(U.uRefr,    'value',0,6,.01).name('Refraction Str');
-  tx.open();
-
-  const pr=gui.addFolder('PRESETS');
-  pr.add({save:saveURL},'save').name('Save URL  (U)');
-  const DEF={uAmbient:0,uReflect:4.5,uFresnel:8.0,uIriMode:1,uIriAmt:1.0,uIriBands:2.0,
-    uHueShift:.85,uIriSat:1.4,uPrism:14,uFlare:2.0,uOpacity:1.0,uEffBlend:0.0,uRefr:2.02,
-    uPitch:.2,uAzimuth:0,uBlendA:1,uSatA:1.8,uSharpA:2.24,uBlendB:.5,uSatB:1,
-    uGrainStr:.02,uGrainSize:.5,uSplash:1.8,uWSize:.4,uWSoft:.85,uWSpd:1.4};
-  pr.add({reset(){
-    Object.keys(DEF).forEach(k=>{if(U[k])U[k].value=DEF[k];});
-    motionSens=12.2;micSens=10;momentum=0;momDecay=Math.log(2)/2;microInt=0.5;
-    gui.controllersRecursive().forEach(c=>{try{c.updateDisplay();}catch(e){}});
-    toast('Reset to defaults');
-  }},'reset').name('Reset defaults');
-
-  /* Key handlers */
-  document.addEventListener('keydown',e=>{
-    const k=e.key;
-    if(k==='g'||k==='G') gui.domElement.style.display=gui.domElement.style.display==='none'?'':'none';
-    if(k==='m'||k==='M'){
-      const els=[gui.domElement,document.getElementById('cp'),document.getElementById('mp')];
-      const hint=document.getElementById('hint');
-      const hide=gui.domElement.style.display!=='none';
-      els.forEach(el=>{if(el)el.style.display=hide?'none':'';});
-      if(hint) hint.style.display=hide?'none':'';
-    }
-  });
-}
-
-/* ─── BACKGROUND SYSTEM ────────────────────────────── */
-const srcBtns=document.querySelectorAll('.src-btn');
-let bgTexA=null,bgTexB=null,bgVidA=null,bgVidB=null,bgCamA=null,bgCamB=null,bgMode='none';
-
-const imgInputA=Object.assign(document.createElement('input'),{type:'file',accept:'image/*'});
-const imgInputB=Object.assign(document.createElement('input'),{type:'file',accept:'image/*'});
-const vidInputA=Object.assign(document.createElement('input'),{type:'file',accept:'video/*'});
-document.body.append(imgInputA,imgInputB,vidInputA);
-
-function mkVid(){const v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;return v;}
-
-function applyTexA(tex,mirror){
-  if(bgTexA&&bgTexA!==nullTex)bgTexA.dispose();
-  bgTexA=tex;tex.minFilter=tex.magFilter=THREE.LinearFilter;tex.needsUpdate=true;
-  U.uBgA.value=tex;U.uHasBgA.value=1;U.uMirrorA.value=mirror?1:0;
-}
-function clearBA(){
-  if(bgCamA){bgCamA.getTracks().forEach(t=>t.stop());bgCamA=null;}
-  if(bgVidA){bgVidA.pause();bgVidA.srcObject=null;bgVidA.src='';}
-  if(bgTexA&&bgTexA!==nullTex){bgTexA.dispose();bgTexA=null;}
-  U.uBgA.value=nullTex;U.uHasBgA.value=0;bgMode='none';
-}
-function clearBB(){
-  if(bgCamB){bgCamB.getTracks().forEach(t=>t.stop());bgCamB=null;}
-  if(bgVidB){bgVidB.pause();bgVidB.srcObject=null;bgVidB.src='';}
-  if(bgTexB&&bgTexB!==nullTex){bgTexB.dispose();bgTexB=null;}
-  U.uBgB.value=nullTex;U.uHasBgB.value=0;
-}
-
-/* Layer A sources */
-imgInputA.addEventListener('change',e=>{
-  const f=e.target.files[0];if(!f)return;clearBA();
-  new THREE.TextureLoader().load(URL.createObjectURL(f),tex=>applyTexA(tex,false));
-  bgMode='image';e.target.value='';
-});
-vidInputA.addEventListener('change',e=>{
-  const f=e.target.files[0];if(!f)return;clearBA();
-  bgVidA=mkVid();bgVidA.src=URL.createObjectURL(f);
-  bgVidA.play().then(()=>applyTexA(new THREE.VideoTexture(bgVidA),false));
-  bgMode='video';e.target.value='';
-});
-async function loadBAWebcam(){
-  clearBA();bgMode='webcam';
-  try{
-    const s=await navigator.mediaDevices.getUserMedia({video:{width:1280,height:720,facingMode:'user'},audio:false});
-    bgCamA=s;bgVidA=mkVid();bgVidA.srcObject=s;await bgVidA.play();
-    applyTexA(new THREE.VideoTexture(bgVidA),true);
-  }catch(e){toast('Camera A error');}
-}
-
-/* Layer B sources */
-imgInputB.addEventListener('change',e=>{
-  const f=e.target.files[0];if(!f)return;clearBB();
-  new THREE.TextureLoader().load(URL.createObjectURL(f),tex=>{
-    bgTexB=tex;tex.minFilter=tex.magFilter=THREE.LinearFilter;tex.needsUpdate=true;
-    U.uBgB.value=tex;U.uHasBgB.value=1;
-  });e.target.value='';toast('Layer B image loaded');
-});
-async function loadBBWebcam(){
-  clearBB();
-  try{
-    const s=await navigator.mediaDevices.getUserMedia({video:{width:1280,height:720,facingMode:'user'},audio:false});
-    bgCamB=s;bgVidB=mkVid();bgVidB.srcObject=s;await bgVidB.play();
-    bgTexB=new THREE.VideoTexture(bgVidB);
-    bgTexB.minFilter=bgTexB.magFilter=THREE.LinearFilter;
-    U.uBgB.value=bgTexB;U.uHasBgB.value=1;U.uMirrorB.value=1;
-    toast('Layer B webcam');
-  }catch(e){toast('Camera B error');}
-}
-
-/* Main source buttons */
-const srcPanel=document.getElementById('cp');
-function addSrcButtons(){
-  const row=document.createElement('div');
-  row.style.cssText='display:flex;gap:5px;padding:7px 10px 8px';
-  ['NONE','IMAGE','WEBCAM','VIDEO'].forEach(lbl=>{
-    const b=document.createElement('button');
-    b.className='sb';b.textContent=lbl;b.style.flex='1';
-    b.addEventListener('click',()=>{
-      if(lbl==='NONE')   clearBA();
-      if(lbl==='IMAGE')  imgInputA.click();
-      if(lbl==='WEBCAM') loadBAWebcam();
-      if(lbl==='VIDEO')  vidInputA.click();
-    });
-    row.appendChild(b);
-  });
-  /* Insert after the cam header */
-  const header=document.querySelector('#cp .ph');
-  header.after(row);
-}
-
-/* ─── MOTION DETECTION  6×4 grid ───────────────────── */
-const MW=48,MH=36,GCOLS=6,GROWS=4;
-const mCvs=Object.assign(document.createElement('canvas'),{width:MW,height:MH});
-const mCtx=mCvs.getContext('2d',{willReadFrequently:true});
-let prevFD=null,motionSens=12.2,rawStr=0;
-const motionTgt=new THREE.Vector2(.5,.5);
-let prevMP={x:.5,y:.5};
-
-function drawPreview(level){
-  const ov=document.getElementById('ov');
-  const octx=ov.getContext('2d');
-  const OW=ov.width,OH=ov.height;
-  const vidEl=document.getElementById('vid');
-  if(vidEl.readyState<2)return;
-  octx.save();octx.translate(OW,0);octx.scale(-1,1);
-  octx.drawImage(vidEl,0,0,OW,OH);octx.restore();
-  if(level>.08){
-    const r=4+level*10;
-    const g=octx.createRadialGradient(14,14,1,14,14,r*2);
-    g.addColorStop(0,`rgba(120,220,255,${Math.min(level*1.5,.9)})`);
-    g.addColorStop(1,'rgba(120,220,255,0)');
-    octx.beginPath();octx.arc(14,14,r*2,0,Math.PI*2);octx.fillStyle=g;octx.fill();
-    octx.beginPath();octx.arc(14,14,r*.5,0,Math.PI*2);
-    octx.fillStyle=`rgba(200,240,255,${Math.min(level*2,1)})`;octx.fill();
-  }
-}
-
-function processMotion(){
-  const vidEl=document.getElementById('vid');
-  if(!vidEl||vidEl.readyState<2)return;
-  mCtx.drawImage(vidEl,0,0,MW,MH);
-  const curr=mCtx.getImageData(0,0,MW,MH).data;
-  drawPreview(rawStr);
-  if(prevFD){
-    const sW=MW/GCOLS,sH=MH/GROWS;
-    const secE=new Float32Array(GCOLS*GROWS);
-    let total=0;
-    for(let i=0;i<curr.length;i+=4){
-      const d=(Math.abs(curr[i]-prevFD[i])+Math.abs(curr[i+1]-prevFD[i+1])+Math.abs(curr[i+2]-prevFD[i+2]))/3;
-      if(d>30){
-        const idx=i>>2,px=idx%MW,py=Math.floor(idx/MW);
-        secE[Math.floor(px/sW)+Math.floor(py/sH)*GCOLS]+=d;
-        total+=d;
-      }
-    }
-    let bestS=0,bestE=0;
-    for(let s=0;s<secE.length;s++)if(secE[s]>bestE){bestE=secE[s];bestS=s;}
-    const raw=Math.min(total/(MW*MH*80)*motionSens,1);
-    rawStr+=(raw-rawStr)*.20;
-    if(total===0)rawStr*=.80;
-    if(bestE>0&&rawStr>.20){
-      const sx=bestS%GCOLS,sy=Math.floor(bestS/GCOLS);
-      const nx=1-((sx+.5)/GCOLS),ny=(sy+.5)/GROWS;
-      const dx=nx-prevMP.x,dy=ny-prevMP.y;
-      addWave(nx,ny,rawStr*.75,dx*8,dy*8);
-      momentum=Math.min(1,momentum+rawStr*.16);
-      momVx=dx*5;momVy=dy*5;momX=nx;momY=ny;
-      motionTgt.set(nx,ny);
-      prevMP={x:nx,y:ny};
-      document.getElementById('cs').textContent='✦ MOTION DETECTED';
-      document.getElementById('cs').className='ps on';
-    }else{
-      document.getElementById('cs').textContent='◎ WATCHING';
-      document.getElementById('cs').className='ps hi';
-    }
-    document.getElementById('mof').style.width=(rawStr*100).toFixed(1)+'%';
-  }
-  prevFD=new Uint8ClampedArray(curr);
-}
-
-/* ─── CAMERA CONTROL ───────────────────────────────── */
-let camStream=null,camOn=false,camTimer=null;
-
-async function startCam(){
-  const cb=document.getElementById('cb');
-  cb.disabled=true;cb.textContent='…';
-  try{
-    camStream=await navigator.mediaDevices.getUserMedia({video:{width:640,height:480,facingMode:'user'},audio:false});
-    const vid=document.getElementById('vid');
-    vid.srcObject=camStream;await vid.play();
-    camOn=true;
-    document.getElementById('cv').style.display='block';
-    document.getElementById('mr').style.display='flex';
-    cb.textContent='STOP';cb.disabled=false;
-    document.getElementById('cs').textContent='◎ WATCHING';
-    document.getElementById('cs').className='ps hi';
-    /* If background A webcam wanted, share stream */
-    if(bgMode==='webcam'&&!bgCamA&&bgVidA)bgVidA.srcObject=camStream;
-    camTimer=setInterval(processMotion,66);
-  }catch(err){
-    document.getElementById('cs').textContent='✕ CAMERA ERROR';
-    document.getElementById('cs').className='ps err';
-    cb.textContent='RETRY';cb.disabled=false;
-  }
-}
-function stopCam(){
-  camOn=false;if(camTimer)clearInterval(camTimer);
-  if(camStream){camStream.getTracks().forEach(t=>t.stop());camStream=null;}
-  const vid=document.getElementById('vid');vid.srcObject=null;
-  document.getElementById('cv').style.display='none';
-  document.getElementById('mr').style.display='none';
-  document.getElementById('cs').textContent='◌ CAMERA OFF';
-  document.getElementById('cs').className='ps';
-  document.getElementById('cb').textContent='START CAMERA';
-  document.getElementById('cb').disabled=false;
-  prevFD=null;rawStr=0;
-}
-document.getElementById('cb').addEventListener('click',()=>camOn?stopCam():startCam());
-document.addEventListener('keydown',e=>{if(e.key==='c'||e.key==='C')camOn?stopCam():startCam();});
-
-/* ─── MICROPHONE ───────────────────────────────────── */
-let audioCtx=null,analyser=null,micStream=null,micOn=false,micSens=10;
-const freqBuf=new Uint8Array(128);
-
-async function startMic(){
-  const mb=document.getElementById('mb');
-  mb.disabled=true;
-  try{
-    audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    micStream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});
-    const src=audioCtx.createMediaStreamSource(micStream);
-    analyser=audioCtx.createAnalyser();analyser.fftSize=256;analyser.smoothingTimeConstant=.78;
-    src.connect(analyser);micOn=true;
-    document.getElementById('ml').style.display='flex';
-    mb.textContent='STOP MIC';mb.disabled=false;
-    document.getElementById('ms').textContent='✦ MIC ACTIVE';
-    document.getElementById('ms').className='ps on';
-  }catch(e){mb.textContent='MIC';mb.disabled=false;}
-}
-function stopMic(){
-  micOn=false;
-  if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}
-  if(audioCtx){audioCtx.close();audioCtx=null;}
-  analyser=null;
-  document.getElementById('ml').style.display='none';
-  U.uMicVol.value=0;U.uMicBass.value=0;
-  document.getElementById('vf').style.width='0%';
-  document.getElementById('bf').style.width='0%';
-  document.getElementById('mb').textContent='MIC';
-  document.getElementById('ms').textContent='◌ MIC OFF';
-  document.getElementById('ms').className='ps';
-}
-function processMic(){
-  if(!analyser||!micOn)return;
-  analyser.getByteFrequencyData(freqBuf);
-  let s=0;for(const x of freqBuf)s+=x;
-  const vol=s/freqBuf.length/255;
-  const bn=Math.floor(freqBuf.length*.15);let bs=0;for(let i=0;i<bn;i++)bs+=freqBuf[i];
-  const v=Math.min(vol*micSens*2.2,1),b=Math.min((bs/bn/255)*micSens*2.8,1);
-  U.uMicVol.value=v;U.uMicBass.value=b;
-  document.getElementById('vf').style.width=(v*100).toFixed(1)+'%';
-  document.getElementById('bf').style.width=(b*100).toFixed(1)+'%';
-}
-document.getElementById('mb').addEventListener('click',()=>micOn?stopMic():startMic());
-
-/* ─── MOUSE / TOUCH ────────────────────────────────── */
-const tgtMouse=new THREE.Vector2(.5,.5);
-const centre=new THREE.Vector2(.5,.5);
-let prevMouse={x:.5,y:.5};
-
-document.addEventListener('mousemove',e=>{
-  const nx=e.clientX/innerWidth,ny=1-e.clientY/innerHeight;
-  const vx=nx-prevMouse.x,vy=ny-prevMouse.y;
-  const spd=Math.hypot(vx,vy)*10;
-  if(spd>.06){addWave(nx,ny,Math.min(spd,1)*.6,vx*10,vy*10);momentum=Math.min(1,momentum+spd*.14);momX=nx;momY=ny;}
-  prevMouse={x:nx,y:ny};tgtMouse.set(nx,ny);
-});
-document.addEventListener('touchmove',e=>{
-  const t=e.touches[0];
-  const nx=t.clientX/innerWidth,ny=1-t.clientY/innerHeight;
-  const vx=nx-prevMouse.x,vy=ny-prevMouse.y;
-  const spd=Math.hypot(vx,vy)*10;
-  if(spd>.06){addWave(nx,ny,Math.min(spd,1)*.6,vx*10,vy*10);momentum=Math.min(1,momentum+spd*.14);momX=nx;momY=ny;}
-  prevMouse={x:nx,y:ny};tgtMouse.set(nx,ny);
-},{passive:true});
-
-/* ─── INIT & LOOP ──────────────────────────────────── */
-buildGUI();
-addSrcButtons();
-loadURL();
-
-/* ── Startup: open with everything hidden ─────────── */
-/* Hide GUI and all panels immediately */
-gui.domElement.style.display='none';
-document.getElementById('cp').style.display='none';
-document.getElementById('mp').style.display='none';
-
-/* Startup overlay handlers */
-document.getElementById('startup-btn').addEventListener('click', async ()=>{
-  const overlay=document.getElementById('startup');
-  overlay.style.opacity='0';
-  overlay.style.transition='opacity .5s';
-  setTimeout(()=>overlay.remove(), 500);
-  /* Start motion detection camera AND set webcam as background A simultaneously */
-  await Promise.all([startCam(), loadBAWebcam()]);
-  const h=document.getElementById('hint');
-  h.style.display='';
-  setTimeout(()=>{ h.style.opacity='0'; h.style.transition='opacity 1s'; }, 3000);
-  setTimeout(()=>{ h.style.display='none'; h.style.opacity=''; h.style.transition=''; }, 4000);
-});
-
-document.getElementById('startup-skip').addEventListener('click', ()=>{
-  const overlay=document.getElementById('startup');
-  overlay.style.opacity='0';
-  overlay.style.transition='opacity .4s';
-  setTimeout(()=>overlay.remove(), 400);
-});
-
-const clock=new THREE.Clock();
-let lastT=0;
-
-(function loop(){
-  requestAnimationFrame(loop);
-  processMic();
-
-  const now=clock.getElapsedTime();
-  const dt=Math.min(now-lastT,.05);lastT=now;
-
-  /* Momentum decay */
-  momentum*=Math.exp(-dt*momDecay);
-  U.uMomS.value=momentum;
-  U.uMomP.value.set(
-    (momX-.5)*(1.4+U.uPitch.value*1.8),
-    (momY-.5)*(1.4+U.uPitch.value*1.8)
-  );
-  if(momentum>.04){
-    microTimer+=dt;
-    if(microTimer>=microInt){
-      microTimer=0;
-      addWave(
-        Math.max(.05,Math.min(.95,momX+(Math.random()-.5)*.12)),
-        Math.max(.05,Math.min(.95,momY+(Math.random()-.5)*.12)),
-        momentum*.28,
-        momVx*.12+(Math.random()-.5)*.4,
-        momVy*.12+(Math.random()-.5)*.4
-      );
-    }
-  }
-
-  if(bgTexA?.isVideoTexture)bgTexA.needsUpdate=true;
-  if(bgTexB?.isVideoTexture)bgTexB.needsUpdate=true;
-
-  U.uMouse.value.lerp(tgtMouse,.015);
-  U.uTime.value=now;
-  renderer.render(scene,ortho);
-})();
-</script>
+  <!-- Featured designs -------------------------------------------------- -->
+  <section class="section wrap" data-catalog-error>
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Current drop</p>
+        <h2 class="h1">The pieces</h2>
+      </div>
+      <a class="link-arrow" href="shop.html">See everything</a>
+    </div>
+    <div class="grid grid--3" data-featured-grid>
+      <p class="meta">Loading the range&hellip;</p>
+    </div>
+  </section>
+
+  <!-- Garment range ----------------------------------------------------- -->
+  <section class="section wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Choose your canvas</p>
+        <h2 class="h1">Four garments</h2>
+      </div>
+    </div>
+    <div class="grid grid--4" data-garment-grid></div>
+  </section>
+
+  <!-- How it works ------------------------------------------------------ -->
+  <section class="section wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">How it works</p>
+        <h2 class="h1">Made after you order it</h2>
+      </div>
+    </div>
+    <div class="steps" data-reveal>
+      <div class="step">
+        <h3 class="h3">Pick the art, then the garment</h3>
+        <p>Every design is shown on the actual colour and cut you are buying. Change either one
+          and the mockup redraws — no guessing what the print looks like on moss green.</p>
+      </div>
+      <div class="step">
+        <h3 class="h3">We send it to Print Poppa</h3>
+        <p>Your order goes straight to their Auckland studio with the artwork, garment code, colour
+          and size attached. Nothing is printed until it is sold.</p>
+      </div>
+      <div class="step">
+        <h3 class="h3">It ships direct to you</h3>
+        <p>Direct-to-garment printed, quality checked and posted from Tāmaki Makaurau. Three to
+          five working days New Zealand wide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artists ----------------------------------------------------------- -->
+  <section class="section wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">The roster</p>
+        <h2 class="h1">Artists in rotation</h2>
+      </div>
+      <a class="link-arrow" href="artists.html">Meet them</a>
+    </div>
+    <p class="lede" data-reveal>The house line is generative work built in code. Alongside it sits a
+      rotating group of guest artists — each drop carries their name through to the checkout, and
+      they are paid on every sale rather than for the file.</p>
+    <div class="grid grid--4" style="margin-top:2.5rem" data-artist-strip></div>
+  </section>
+
+</main>
+
+<footer data-site-footer></footer>
+
+<script src="assets/js/liquid-chrome-shader.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/garments.js"></script>
+<script src="assets/js/liquid-chrome-bg.js"></script>
+<script src="assets/js/page-home.js"></script>
 </body>
 </html>
