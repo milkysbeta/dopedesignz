@@ -50,7 +50,7 @@
       }
     }
 
-    document.title = design.title + ' — The Awakening Process';
+    document.title = design.title + ' — ' + window.SITE_CONFIG.brand.name;
 
     function shell() {
       return '' +

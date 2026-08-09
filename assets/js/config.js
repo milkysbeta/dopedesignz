@@ -6,7 +6,7 @@
  */
 window.SITE_CONFIG = {
   brand: {
-    name: 'The Awakening Process',
+    name: 'Dope Designs',
     tagline: 'Wearable generative art',
     email: 'hello@example.co.nz',
     instagram: '',

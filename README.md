@@ -1,8 +1,13 @@
-# The Awakening Process
+# Dope Designs
 
 A print-on-demand storefront for wearable generative art — tees, hoodies, jackets and
 hats carrying shader-built artwork, printed to order in Tāmaki Makaurau by
 [Print Poppa](https://www.printpoppa.co.nz/) and shipped direct to the customer.
+
+The artwork comes from **The Awakening Process**, the generative art project whose
+Liquid Chrome shader also drives this site's hero. Dope Designs is the shop; The
+Awakening Process is the house artist on the roster. Change either name in
+`assets/js/config.js` (`brand.name`) and `data/artists.json`.
 
 Static site. No build step, no framework, no npm install to run it. Open a server on the
 folder and it works.
