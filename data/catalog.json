@@ -1,139 +1,102 @@
 {
-  "_comment": "PLACEHOLDER PRICING AND CODES. Replace price/printPoppaCode/colours with Print Poppa's real catalogue before launch. All prices are NZD and GST-inclusive. GARMENT PHOTOS: rename a colour's \"_image\" key to \"image\" once that file exists in assets/garments/ and the mockup switches from the drawn silhouette to the real photo. Colours with no image keep rendering as vector, so a shoot can land one garment at a time.",
+  "_comment": "Garments, colours, sizes and photography are REAL AS Colour catalogue data (the blanks Print Poppa print on), pulled from AS Colour's public product feed. `wholesaleExGst` is their listed wholesale price ex GST. RETAIL `price` IS STILL A PLACEHOLDER — set it from Print Poppa's quoted print cost plus your margin. Product photography is AS Colour's; confirm with Print Poppa that you may use it before launch.",
   "currency": "NZD",
   "gstRate": 0.15,
   "gstIncluded": true,
   "garments": [
     {
       "id": "tee",
-      "name": "Heavyweight Tee",
+      "name": "AS Colour Heavy Tee",
       "category": "T-Shirts",
-      "printPoppaCode": "PP-TEE-220",
+      "printPoppaCode": "AS5080",
+      "asColourStyle": "5080",
+      "wholesaleExGst": 36.48,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "_comment": "Print area as fractions of the product photo (0-1).",
         "printArea": {
-          "x": 0.31,
-          "y": 0.24,
-          "w": 0.38,
+          "x": 0.35,
+          "y": 0.33,
+          "w": 0.3,
           "h": 0.3
         }
       },
-      "price": 45,
-      "blurb": "220gsm combed cotton, boxy shoulder, unisex fit. The default canvas — DTG holds detail on it beautifully.",
+      "price": 69,
+      "blurb": "220gsm heavyweight combed cotton, boxy fit, ribbed neck. AS Colour 5080 — the blank Print Poppa print on.",
       "fabric": "100% combed cotton, 220gsm",
       "printMethod": "Direct to garment (DTG)",
-      "fit": "Unisex, true to size. Size up for an oversized drape.",
+      "fit": "Regular fit, true to size. Size up for an oversized drape.",
+      "placement": "Front centre chest",
       "sizes": [
-        "XS",
         "S",
         "M",
         "L",
         "XL",
         "2XL",
-        "3XL"
+        "3XL",
+        "4XL",
+        "5XL"
       ],
       "colours": [
         {
           "name": "Black",
-          "hex": "#0d0d0f",
+          "hex": "#000000",
           "tone": "dark",
-          "_image": "assets/garments/tee-black.jpg"
+          "image": "assets/garments/tee-black.jpg"
         },
         {
-          "name": "Bone",
-          "hex": "#e8e2d6",
+          "name": "Midnight Blue",
+          "hex": "#35374c",
+          "tone": "dark",
+          "image": "assets/garments/tee-midnight-blue.jpg"
+        },
+        {
+          "name": "Pine Green",
+          "hex": "#1d342a",
+          "tone": "dark",
+          "image": "assets/garments/tee-pine-green.jpg"
+        },
+        {
+          "name": "Grey Marle",
+          "hex": "#a4a4a2",
           "tone": "light",
-          "_image": "assets/garments/tee-bone.jpg"
+          "image": "assets/garments/tee-grey-marle.jpg"
         },
         {
-          "name": "Ash",
-          "hex": "#8d8f93",
+          "name": "Ecru",
+          "hex": "#e4e0d4",
           "tone": "light",
-          "_image": "assets/garments/tee-ash.jpg"
+          "image": "assets/garments/tee-ecru.jpg"
         },
         {
-          "name": "Slate",
-          "hex": "#3a4047",
-          "tone": "dark",
-          "_image": "assets/garments/tee-slate.jpg"
-        },
-        {
-          "name": "Oxide",
-          "hex": "#7b3b2e",
-          "tone": "dark",
-          "_image": "assets/garments/tee-oxide.jpg"
-        },
-        {
-          "name": "Moss",
-          "hex": "#4a5442",
-          "tone": "dark",
-          "_image": "assets/garments/tee-moss.jpg"
+          "name": "Butter",
+          "hex": "#f4f0d7",
+          "tone": "light",
+          "image": "assets/garments/tee-butter.jpg"
         }
-      ],
-      "sizeGuide": {
-        "columns": [
-          "Size",
-          "Chest (cm)",
-          "Length (cm)"
-        ],
-        "rows": [
-          [
-            "XS",
-            "46",
-            "68"
-          ],
-          [
-            "S",
-            "49",
-            "70"
-          ],
-          [
-            "M",
-            "52",
-            "72"
-          ],
-          [
-            "L",
-            "55",
-            "74"
-          ],
-          [
-            "XL",
-            "58",
-            "76"
-          ],
-          [
-            "2XL",
-            "61",
-            "78"
-          ],
-          [
-            "3XL",
-            "64",
-            "80"
-          ]
-        ]
-      }
+      ]
     },
     {
       "id": "hoodie",
-      "name": "Heavy Fleece Hoodie",
+      "name": "AS Colour Heavy Hood",
       "category": "Hoodies",
-      "printPoppaCode": "PP-HOOD-350",
+      "printPoppaCode": "AS5146",
+      "asColourStyle": "5146",
+      "wholesaleExGst": 67.83,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "_comment": "Print area as fractions of the product photo (0-1).",
         "printArea": {
-          "x": 0.31,
-          "y": 0.3,
-          "w": 0.38,
-          "h": 0.26
+          "x": 0.35,
+          "y": 0.405,
+          "w": 0.3,
+          "h": 0.205
         }
       },
-      "price": 130,
-      "blurb": "350gsm brushed-back fleece, double-lined hood, kangaroo pocket. Weighty enough to hold a full front print.",
+      "price": 139,
+      "blurb": "350gsm heavyweight fleece, double-lined hood, kangaroo pocket. AS Colour 5146.",
       "fabric": "80% cotton / 20% polyester, 350gsm",
       "printMethod": "Direct to garment (DTG)",
-      "fit": "Unisex, relaxed. Roomy through the body.",
+      "fit": "Regular fit, roomy through the body.",
+      "placement": "Front centre chest",
       "sizes": [
         "XS",
         "S",
@@ -146,227 +109,138 @@
       "colours": [
         {
           "name": "Black",
-          "hex": "#0d0d0f",
+          "hex": "#000000",
           "tone": "dark",
-          "_image": "assets/garments/hoodie-black.jpg"
+          "image": "assets/garments/hoodie-black.jpg"
+        },
+        {
+          "name": "Coal",
+          "hex": "#323031",
+          "tone": "dark",
+          "image": "assets/garments/hoodie-coal.jpg"
+        },
+        {
+          "name": "Pine Green",
+          "hex": "#1d342a",
+          "tone": "dark",
+          "image": "assets/garments/hoodie-pine-green.jpg"
+        },
+        {
+          "name": "Grey Marle",
+          "hex": "#a4a4a2",
+          "tone": "light",
+          "image": "assets/garments/hoodie-grey-marle.jpg"
         },
         {
           "name": "Bone",
-          "hex": "#e8e2d6",
+          "hex": "#d1cdca",
           "tone": "light",
-          "_image": "assets/garments/hoodie-bone.jpg"
-        },
-        {
-          "name": "Charcoal Marle",
-          "hex": "#41454a",
-          "tone": "dark",
-          "_image": "assets/garments/hoodie-charcoal-marle.jpg"
-        },
-        {
-          "name": "Storm",
-          "hex": "#5d6670",
-          "tone": "dark",
-          "_image": "assets/garments/hoodie-storm.jpg"
-        },
-        {
-          "name": "Sand",
-          "hex": "#c8b79b",
-          "tone": "light",
-          "_image": "assets/garments/hoodie-sand.jpg"
+          "image": "assets/garments/hoodie-bone.jpg"
         }
-      ],
-      "sizeGuide": {
-        "columns": [
-          "Size",
-          "Chest (cm)",
-          "Length (cm)"
-        ],
-        "rows": [
-          [
-            "XS",
-            "52",
-            "66"
-          ],
-          [
-            "S",
-            "55",
-            "68"
-          ],
-          [
-            "M",
-            "58",
-            "70"
-          ],
-          [
-            "L",
-            "61",
-            "72"
-          ],
-          [
-            "XL",
-            "64",
-            "74"
-          ],
-          [
-            "2XL",
-            "67",
-            "76"
-          ],
-          [
-            "3XL",
-            "70",
-            "78"
-          ]
-        ]
-      }
+      ]
     },
     {
       "id": "jacket",
-      "name": "Coach Jacket",
+      "name": "AS Colour Coach Jacket",
       "category": "Jackets",
-      "printPoppaCode": "PP-COACH-01",
+      "printPoppaCode": "AS5520",
+      "asColourStyle": "5520",
+      "wholesaleExGst": 65.22,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "_comment": "Print area as fractions of the product photo (0-1).",
         "printArea": {
-          "x": 0.28,
-          "y": 0.26,
-          "w": 0.44,
-          "h": 0.34
+          "x": 0.305,
+          "y": 0.3,
+          "w": 0.39,
+          "h": 0.32
         }
       },
-      "price": 165,
-      "blurb": "Wind-resistant shell, snap front, mesh lining. Back panel is the hero print area.",
-      "fabric": "Poly shell, mesh lined",
+      "price": 145,
+      "blurb": "Wind-resistant shell, snap front, mesh lined. AS Colour 5520 — printed on the back panel.",
+      "fabric": "Polyester shell, mesh lining",
       "printMethod": "Heat transfer (poly shell)",
-      "fit": "Unisex, roomy. Layers over a hoodie.",
+      "fit": "Unisex, roomy. Layers over a hood.",
+      "placement": "Back panel",
       "sizes": [
         "S",
         "M",
         "L",
         "XL",
-        "2XL"
+        "2XL",
+        "3XL"
       ],
       "colours": [
         {
           "name": "Black",
-          "hex": "#0d0d0f",
+          "hex": "#000000",
           "tone": "dark",
-          "_image": "assets/garments/jacket-black.jpg"
+          "image": "assets/garments/jacket-black.jpg"
         },
         {
-          "name": "Ink",
-          "hex": "#1b2233",
+          "name": "Coal",
+          "hex": "#888888",
           "tone": "dark",
-          "_image": "assets/garments/jacket-ink.jpg"
+          "image": "assets/garments/jacket-coal.jpg"
         },
         {
-          "name": "Bone",
-          "hex": "#e8e2d6",
-          "tone": "light",
-          "_image": "assets/garments/jacket-bone.jpg"
-        },
-        {
-          "name": "Olive",
-          "hex": "#4c5140",
+          "name": "Navy",
+          "hex": "#888888",
           "tone": "dark",
-          "_image": "assets/garments/jacket-olive.jpg"
+          "image": "assets/garments/jacket-navy.jpg"
         }
-      ],
-      "sizeGuide": {
-        "columns": [
-          "Size",
-          "Chest (cm)",
-          "Length (cm)"
-        ],
-        "rows": [
-          [
-            "S",
-            "56",
-            "69"
-          ],
-          [
-            "M",
-            "59",
-            "71"
-          ],
-          [
-            "L",
-            "62",
-            "73"
-          ],
-          [
-            "XL",
-            "65",
-            "75"
-          ],
-          [
-            "2XL",
-            "68",
-            "77"
-          ]
-        ]
-      }
+      ]
     },
     {
       "id": "cap",
-      "name": "Six Panel Cap",
+      "name": "AS Colour Stock Cap",
       "category": "Hats",
-      "printPoppaCode": "PP-CAP-6P",
+      "printPoppaCode": "AS1100",
+      "asColourStyle": "1100",
+      "wholesaleExGst": 26.04,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "_comment": "Print area as fractions of the product photo (0-1).",
         "printArea": {
-          "x": 0.38,
-          "y": 0.34,
-          "w": 0.24,
-          "h": 0.14
+          "x": 0.425,
+          "y": 0.345,
+          "w": 0.15,
+          "h": 0.11
         }
       },
-      "price": 45,
-      "blurb": "Structured six panel, curved brim, adjustable strap. Front panel print or embroidery.",
+      "price": 49,
+      "blurb": "Structured five panel, mid profile, adjustable strap. AS Colour 1100.",
       "fabric": "Cotton twill",
       "printMethod": "Heat transfer or embroidery",
       "fit": "One size, adjustable.",
+      "placement": "Front panel",
       "sizes": [
         "One Size"
       ],
       "colours": [
         {
           "name": "Black",
-          "hex": "#0d0d0f",
+          "hex": "#000000",
           "tone": "dark",
-          "_image": "assets/garments/cap-black.jpg"
+          "image": "assets/garments/cap-black.jpg"
+        },
+        {
+          "name": "Army",
+          "hex": "#4e4a36",
+          "tone": "dark",
+          "image": "assets/garments/cap-army.jpg"
+        },
+        {
+          "name": "Camel",
+          "hex": "#a67a3f",
+          "tone": "light",
+          "image": "assets/garments/cap-camel.jpg"
         },
         {
           "name": "Bone",
-          "hex": "#e8e2d6",
+          "hex": "#d1cdca",
           "tone": "light",
-          "_image": "assets/garments/cap-bone.jpg"
-        },
-        {
-          "name": "Slate",
-          "hex": "#3a4047",
-          "tone": "dark",
-          "_image": "assets/garments/cap-slate.jpg"
-        },
-        {
-          "name": "Oxide",
-          "hex": "#7b3b2e",
-          "tone": "dark",
-          "_image": "assets/garments/cap-oxide.jpg"
+          "image": "assets/garments/cap-bone.jpg"
         }
-      ],
-      "sizeGuide": {
-        "columns": [
-          "Size",
-          "Circumference (cm)"
-        ],
-        "rows": [
-          [
-            "One Size",
-            "55–61 adjustable"
-          ]
-        ]
-      }
+      ]
     }
   ],
   "shipping": [

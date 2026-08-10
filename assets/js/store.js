@@ -283,7 +283,13 @@
     var seed = 0;
     var key = design.id + garment.id;
     for (var i = 0; i < key.length; i++) seed = (seed * 31 + key.charCodeAt(i)) >>> 0;
-    return garment.colours[seed % garment.colours.length];
+
+    /* Prefer a dark colourway: the range is iridescent light-on-dark artwork,
+       which is what it is designed to sit on. Falls back to the full set for a
+       garment that only comes in pale colours. */
+    var pool = garment.colours.filter(function (c) { return c.tone !== 'light'; });
+    if (!pool.length) pool = garment.colours;
+    return pool[seed % pool.length];
   }
 
   /** Cheapest garment a design is available on — what the card price shows. */

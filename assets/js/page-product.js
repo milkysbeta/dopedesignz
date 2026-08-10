@@ -66,7 +66,8 @@
 
     function stageMarkup() {
       return window.GarmentMockup.render(
-        state.garmentId, colour(), design.artHref, { showPrintArea: state.showPrintArea }
+        state.garmentId, colour(), design.artHref,
+        { showPrintArea: state.showPrintArea, size: 'stage', alt: design.title + ' on ' + garment().name }
       );
     }
 
@@ -157,16 +158,14 @@
               '<br>Fit &middot; ' + Store.escapeHtml(g.fit) + '</span></p>' +
           '</div></details>' +
 
-        '<details class="spec"><summary>Size guide</summary>' +
-          '<div class="spec__body"><table class="size-table"><thead><tr>' +
-            g.sizeGuide.columns.map(function (h) { return '<th>' + Store.escapeHtml(h) + '</th>'; }).join('') +
-          '</tr></thead><tbody>' +
-            g.sizeGuide.rows.map(function (r) {
-              return '<tr>' + r.map(function (v) { return '<td>' + Store.escapeHtml(v) + '</td>'; }).join('') + '</tr>';
-            }).join('') +
-          '</tbody></table>' +
-          '<p class="meta" style="margin-top:1rem">Measurements are flat, in centimetres. ' +
-            'Allow 1&ndash;2cm tolerance.</p></div></details>' +
+        '<details class="spec"><summary>Sizes</summary>' +
+          '<div class="spec__body"><p>This is the ' + Store.escapeHtml(g.name) +
+            ' (style ' + Store.escapeHtml(g.asColourStyle) + '), available in ' +
+            g.sizes.length + (g.sizes.length === 1 ? ' size' : ' sizes') + ': ' +
+            g.sizes.map(Store.escapeHtml).join(', ') + '.</p>' +
+            '<p style="margin-top:1rem">Full garment measurements are published by AS Colour — ' +
+            '<a href="https://www.ascolour.co.nz/assets" target="_blank" rel="noopener" ' +
+            'style="border-bottom:1px solid var(--line)">see their size guides</a>.</p></div></details>' +
 
         '<details class="spec"><summary>Shipping &amp; returns</summary>' +
           '<div class="spec__body"><p>Printed and posted from Tāmaki Makaurau by Print Poppa. ' +

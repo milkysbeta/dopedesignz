@@ -49,7 +49,7 @@ assets/css/site.css   The whole design system
 assets/js/
   config.js           ← the only file you need to edit to go live
   store.js            Catalogue loading, cart, money, shared header/footer
-  garments.js         Vector garment mockups that recolour live
+  garments.js         Photo mockups — artwork composited onto real product shots
   checkout.js         Order record + payment adapter
   liquid-chrome-*.js  The hero background (shader extracted from the art piece)
   page-*.js           One file per page
@@ -69,11 +69,11 @@ Everything below is invented and needs real values. Nothing else in the codebase
 
 | What | Where | Notes |
 |---|---|---|
-| **Garment prices** | `data/catalog.json` | All NZD, **GST-inclusive**. Currently guesses. |
-| **Garment codes** | `data/catalog.json` → `printPoppaCode` | Must match Print Poppa's actual SKUs — these go on the print docket. |
-| **Colours and sizes** | `data/catalog.json` | Should mirror what Print Poppa actually stocks. |
+| **Retail prices** | `data/catalog.json` → `price` | NZD, **GST-inclusive**. Set from Print Poppa's print cost + margin; `wholesaleExGst` alongside is AS Colour's real trade price. |
+| **Print Poppa codes** | `data/catalog.json` → `printPoppaCode` | Currently `AS<style>`. Must match however Print Poppa reference these blanks on an order. |
+| **Stock availability** | `data/catalog.json` | Colours and sizes are AS Colour's real range — confirm Print Poppa carry the ones you list. |
 | **Shipping rates** | `data/catalog.json` → `shipping` | Confirm with Print Poppa; the free-shipping threshold is `freeShippingThreshold`. |
-| **Artwork** | `assets/designs/*.svg` | Generated stand-ins. Replace with real files (see below). |
+| **Artwork** | `assets/designs/*.svg` | Generated stand-ins, built light-on-dark. Replace with real files (see below). |
 | **Artist names and bios** | `data/artists.json` | Two of the three artists are placeholders. |
 | **Contact email** | `assets/js/config.js` → `brand.email` | Also appears in `about.html` and `artists.html`. |
 
@@ -202,56 +202,63 @@ hand-editing it:
 
 ## Garment mockups
 
-`assets/js/garments.js` has two modes and picks per colourway:
+Every mockup is a **photograph of the actual AS Colour blank** with the artwork
+composited onto it. Nothing is illustrated.
 
-- **Photo** — when a colour has an `image`, that product photo *is* the mockup and the
-  artwork is composited into the garment's print area.
-- **Vector** — otherwise it draws the garment and fills it with the colour's hex.
+The garments, colourways, hex codes, sizes and photography all come from AS Colour's
+public product feed (`ascolour.co.nz/assets`), which publishes `Products`,
+`ProductVariants` and `ProductImage` CSVs for the whole catalogue:
 
-They mix freely, so photography can land one garment (or one colour) at a time without the
-grid looking broken in the meantime.
+| Site garment | AS Colour style | Colours | Sizes |
+|---|---|---|---|
+| T-Shirts | 5080 Heavy Tee | 6 | S–5XL |
+| Hoodies | 5146 Heavy Hood | 5 | XS–3XL |
+| Jackets | 5520 Coach Jacket (back view) | 3 | XS–3XL |
+| Hats | 1100 Stock Cap | 4 | One size |
 
-The jacket is drawn from the **back**, because a coach jacket's snap placket splits the
-front — the back panel is the print surface.
+`wholesaleExGst` on each garment is AS Colour's listed trade price. The retail `price`
+is still a placeholder — set it from Print Poppa's print cost plus your margin.
 
-### Switching a colourway to a real photo
+### How the compositing works
 
-1. Drop the photo in `assets/garments/`.
-2. In `data/catalog.json`, rename that colour's `"_image"` key to `"image"`.
+A flat paste of artwork onto a photo always reads as fake, because real ink takes the
+fabric's light. `assets/js/garments.js` does three passes:
 
-That's the whole change — no code. Every colour already carries an `_image` line with the
-filename it expects, so the naming is decided for you.
+1. **Displacement** — the artwork is warped by the garment's own brightness gradient, so
+   it bends over folds and seams instead of lying flat.
+2. **Shading** — the garment's light and shadow inside the print area is multiplied onto
+   the artwork, so a shadowed chest darkens the print by the same amount it darkens the
+   cloth.
+3. **Fabric masking** — anything falling outside the garment silhouette is cut away, so a
+   wide print never bleeds onto the studio background.
 
-The print position comes from the garment's `photo.printArea`, expressed as fractions of
-the image (`0`–`1`) so it is resolution-independent. The values in there now are estimates;
-nudge them once you can see them against the real photography. A single odd colourway shot
-on a different template can override it with its own `printArea`.
+Compositing happens in a canvas at load time and is cached per garment+colour+design, so
+re-filtering the shop grid costs nothing. Mockups paint themselves via a MutationObserver
+once they enter the DOM — no call site has to trigger them.
 
-**The print blends differently by fabric tone, and this matters.** On a `light` colour the
-artwork is multiplied so the garment's folds and shadows read through it, the way ink sits
-in a weave. On a `dark` colour it stays opaque, because DTG lays a white underbase first —
-multiplying there would make the print vanish. That's driven by each colour's `tone`, so
-set it correctly.
+### Adding a garment or colourway
 
-### What to ask Print Poppa for
+Photos live in `assets/garments/`, named `<garment>-<colour>.jpg`. Add the file, then add
+the colour to `data/catalog.json` with its `name`, `hex`, `tone` and `image`.
 
-Their blank catalogue isn't published on their site — the styles and colours live inside
-their designer tool. So this needs to come from Campbell directly:
+`tone` matters: it drives the print-area guide colour and is used to merchandise the shop
+grid, which prefers dark colourways because this range is light-on-dark artwork.
 
-- **The blank range you're actually selling**: style codes, the colours each style comes in
-  (name + a hex or a physical swatch), and available sizes.
-- **Your pricing** on those blanks, and whether the quoted figures include GST.
-- **Product photography** for each colourway, and confirmation you're allowed to use it on
-  your storefront. Shot flat, front-on, same framing and crop across every colour of a
-  style — consistent framing is what lets one `printArea` serve the whole style.
-- **Print area dimensions** in cm for each style, and the maximum print size.
-- **Confirmation of the dropship terms** — their site advertises free dropship direct to
-  customers and no minimums, which is exactly what this store assumes.
+Print position comes from the garment's `photo.printArea`, expressed as fractions of the
+image (`0`–`1`) so it is resolution-independent. One measurement covers every colour of a
+style shot on the same template — which AS Colour's photography is.
 
-Ideally as a spreadsheet plus a folder of images; that maps straight onto
-`data/catalog.json` with no interpretation needed.
+### ⚠️ Before launch: confirm image rights
 
----
+The product photography is **AS Colour's copyright**. They publish it openly for the
+people who buy and decorate their blanks, and a product feed with image URLs is plainly
+meant for building storefronts — but that is an inference, not a written licence. Their
+brand guidelines cover logo use and do not address product imagery.
+
+Confirm with Print Poppa (or AS Colour directly) that you may use it on this store before
+you make the site public. If the answer is no, the fix is small: replace the files in
+`assets/garments/` with your own photography of the same garments, shot front-on with
+consistent framing, and retune `printArea`.
 
 ## Known gaps
 
