@@ -66,7 +66,7 @@
 
     function stageMarkup() {
       return window.GarmentMockup.render(
-        state.garmentId, colour().hex, design.artHref, { showPrintArea: state.showPrintArea }
+        state.garmentId, colour(), design.artHref, { showPrintArea: state.showPrintArea }
       );
     }
 
@@ -274,7 +274,7 @@
         var g = data.garment(gid);
         return '<a class="card" href="product.html?design=' + d.id + '">' +
             '<div class="card__media">' +
-              window.GarmentMockup.render(gid, Store.previewColour(g, d).hex, d.artHref) + '</div>' +
+              window.GarmentMockup.render(gid, Store.previewColour(g, d), d.artHref) + '</div>' +
             '<div class="card__body"><div class="card__row">' +
               '<span class="card__title">' + Store.escapeHtml(d.title) + '</span>' +
               '<span class="card__price">from ' + Store.money(Store.fromPrice(data, d)) + '</span>' +

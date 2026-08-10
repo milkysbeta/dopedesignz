@@ -121,10 +121,68 @@
     }
   };
 
+  /* --- Photo mode -------------------------------------------------------
+   * When a colourway has a real product photo, that photo is the mockup and the
+   * drawn silhouette is skipped entirely. The garment's `photo.printArea` says
+   * where the print sits, as fractions of the image, so one measurement covers
+   * every colourway shot on the same template.
+   */
+  var PHOTO_BOX = { w: 1000, h: 1250 };   // normalised 4:5 canvas
+
+  function renderPhoto(colour, artHref, opts) {
+    var id = 'p' + ++uid;
+    /* store.js copies the garment's default print area onto each photographed
+       colour, so by here it is always a property of the colour itself. */
+    var area = colour.printArea || { x: 0.31, y: 0.22, w: 0.38, h: 0.34 };
+
+    var x = area.x * PHOTO_BOX.w;
+    var y = area.y * PHOTO_BOX.h;
+    var w = area.w * PHOTO_BOX.w;
+    var h = area.h * PHOTO_BOX.h;
+
+    /* On light fabric the ink sits in the weave, so multiply keeps the garment's
+       folds and shadows visible through the print. On dark fabric DTG lays a
+       white underbase first and the print is opaque — multiply would wrongly
+       make it vanish. */
+    var blend = colour.tone === 'light' ? 'multiply' : 'normal';
+
+    var art = artHref
+      ? '<g style="mix-blend-mode:' + blend + '">' +
+          '<image href="' + artHref + '" xlink:href="' + artHref + '" ' +
+          'x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" ' +
+          'width="' + w.toFixed(1) + '" height="' + h.toFixed(1) + '" ' +
+          'preserveAspectRatio="xMidYMid meet"/>' +
+        '</g>'
+      : '';
+
+    /* The cyan guide disappears against a pale garment, so darken it there. */
+    var guideStroke = colour.tone === 'light' ? '#0f6d8c' : '#8fe8ff';
+    var guide = opts.showPrintArea
+      ? '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" ' +
+        'width="' + w.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="none" ' +
+        'stroke="' + guideStroke + '" stroke-opacity="0.85" stroke-width="3" stroke-dasharray="10 8"/>'
+      : '';
+
+    return (
+      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' +
+        'viewBox="0 0 ' + PHOTO_BOX.w + ' ' + PHOTO_BOX.h + '" role="img">' +
+        '<image href="' + colour.image + '" xlink:href="' + colour.image + '" ' +
+          'x="0" y="0" width="' + PHOTO_BOX.w + '" height="' + PHOTO_BOX.h + '" ' +
+          'preserveAspectRatio="xMidYMid slice"/>' +
+        art + guide +
+      '</svg>'
+    );
+  }
+
   /**
    * Render a garment mockup.
+   *
+   * Uses the colourway's real product photo when it has one, and falls back to
+   * the drawn silhouette when it does not — so photographed and unphotographed
+   * colours can coexist in the same grid while a shoot is still coming in.
+   *
    * @param {string} garmentId  tee | hoodie | jacket | cap
-   * @param {string} colour     hex fill for the fabric
+   * @param {object|string} colour  colour record, or a bare hex string
    * @param {string} [artHref]  URL of the design to place in the print area
    * @param {object} [opts]     { showPrintArea: boolean }
    * @returns {string} SVG markup
@@ -133,8 +191,13 @@
     var g = GARMENTS[garmentId];
     if (!g) return '';
     opts = opts || {};
+    if (typeof colour === 'string') colour = { hex: colour };
+
+    if (colour.image) return renderPhoto(colour, artHref, opts);
+
     var id = 'g' + ++uid;
     var p = g.print;
+    var hex = colour.hex;
 
     var art = '';
     if (artHref) {
@@ -151,11 +214,11 @@
 
     return (
       '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' +
-        'viewBox="' + g.viewBox + '" role="img" style="--gc:' + colour + '">' +
-        '<defs>' + paint(id, colour) +
+        'viewBox="' + g.viewBox + '" role="img" style="--gc:' + hex + '">' +
+        '<defs>' + paint(id, hex) +
           '<clipPath id="clip' + id + '"><path d="' + g.body + '"/></clipPath>' +
         '</defs>' +
-        '<path d="' + g.body + '" fill="' + colour + '"/>' +
+        '<path d="' + g.body + '" fill="' + hex + '"/>' +
         /* The print sits under the shading so it picks up the fabric's roll. */
         '<g clip-path="url(#clip' + id + ')">' + art + '</g>' +
         '<path d="' + g.body + '" fill="url(#roll' + id + ')"/>' +

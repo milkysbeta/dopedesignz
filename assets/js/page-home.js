@@ -14,7 +14,7 @@
         var colour = Store.previewColour(garment, d);
         return '<a class="card" href="product.html?design=' + d.id + '" data-reveal>' +
             '<div class="card__media">' +
-              window.GarmentMockup.render(garment.id, colour.hex, d.artHref) +
+              window.GarmentMockup.render(garment.id, colour, d.artHref) +
             '</div>' +
             '<div class="card__body">' +
               '<div class="card__row">' +
@@ -44,7 +44,7 @@
         })[0] || data.designs[0];
         return '<a class="card" href="shop.html#' + g.id + '" data-reveal>' +
             '<div class="card__media">' +
-              window.GarmentMockup.render(g.id, g.colours[0].hex, design.artHref) +
+              window.GarmentMockup.render(g.id, g.colours[0], design.artHref) +
             '</div>' +
             '<div class="card__body">' +
               '<div class="card__row">' +

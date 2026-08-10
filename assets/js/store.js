@@ -22,7 +22,18 @@
     ]).then(function (parts) {
       var catalog = parts[0], designs = parts[1].designs, artists = parts[2].artists;
       var byGarment = {}, byArtist = {}, byDesign = {};
-      catalog.garments.forEach(function (g) { byGarment[g.id] = g; });
+      catalog.garments.forEach(function (g) {
+        byGarment[g.id] = g;
+        /* Resolve photo paths and push the garment's default print area down
+           onto each photographed colour, so the mockup renderer only ever needs
+           the colour record. A colour may override the area — useful when one
+           colourway was shot on a different template. */
+        g.colours.forEach(function (c) {
+          if (!c.image) return;
+          c.image = base + c.image;
+          if (!c.printArea && g.photo) c.printArea = g.photo.printArea;
+        });
+      });
       artists.forEach(function (a) { byArtist[a.id] = a; });
       designs.forEach(function (d) {
         d.artist = byArtist[d.artistId] || { id: d.artistId, name: 'Unknown artist' };

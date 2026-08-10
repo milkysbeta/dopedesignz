@@ -1,5 +1,5 @@
 {
-  "_comment": "PLACEHOLDER PRICING AND CODES. Replace price/printPoppaCode/colours with Print Poppa's real catalogue before launch. All prices are NZD and GST-inclusive.",
+  "_comment": "PLACEHOLDER PRICING AND CODES. Replace price/printPoppaCode/colours with Print Poppa's real catalogue before launch. All prices are NZD and GST-inclusive. GARMENT PHOTOS: rename a colour's \"_image\" key to \"image\" once that file exists in assets/garments/ and the mockup switches from the drawn silhouette to the real photo. Colours with no image keep rendering as vector, so a shoot can land one garment at a time.",
   "currency": "NZD",
   "gstRate": 0.15,
   "gstIncluded": true,
@@ -9,30 +9,109 @@
       "name": "Heavyweight Tee",
       "category": "T-Shirts",
       "printPoppaCode": "PP-TEE-220",
+      "photo": {
+        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "printArea": {
+          "x": 0.31,
+          "y": 0.24,
+          "w": 0.38,
+          "h": 0.3
+        }
+      },
       "price": 45,
       "blurb": "220gsm combed cotton, boxy shoulder, unisex fit. The default canvas — DTG holds detail on it beautifully.",
       "fabric": "100% combed cotton, 220gsm",
       "printMethod": "Direct to garment (DTG)",
       "fit": "Unisex, true to size. Size up for an oversized drape.",
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
       "colours": [
-        { "name": "Black", "hex": "#0d0d0f", "tone": "dark" },
-        { "name": "Bone", "hex": "#e8e2d6", "tone": "light" },
-        { "name": "Ash", "hex": "#8d8f93", "tone": "light" },
-        { "name": "Slate", "hex": "#3a4047", "tone": "dark" },
-        { "name": "Oxide", "hex": "#7b3b2e", "tone": "dark" },
-        { "name": "Moss", "hex": "#4a5442", "tone": "dark" }
+        {
+          "name": "Black",
+          "hex": "#0d0d0f",
+          "tone": "dark",
+          "_image": "assets/garments/tee-black.jpg"
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e2d6",
+          "tone": "light",
+          "_image": "assets/garments/tee-bone.jpg"
+        },
+        {
+          "name": "Ash",
+          "hex": "#8d8f93",
+          "tone": "light",
+          "_image": "assets/garments/tee-ash.jpg"
+        },
+        {
+          "name": "Slate",
+          "hex": "#3a4047",
+          "tone": "dark",
+          "_image": "assets/garments/tee-slate.jpg"
+        },
+        {
+          "name": "Oxide",
+          "hex": "#7b3b2e",
+          "tone": "dark",
+          "_image": "assets/garments/tee-oxide.jpg"
+        },
+        {
+          "name": "Moss",
+          "hex": "#4a5442",
+          "tone": "dark",
+          "_image": "assets/garments/tee-moss.jpg"
+        }
       ],
       "sizeGuide": {
-        "columns": ["Size", "Chest (cm)", "Length (cm)"],
+        "columns": [
+          "Size",
+          "Chest (cm)",
+          "Length (cm)"
+        ],
         "rows": [
-          ["XS", "46", "68"],
-          ["S", "49", "70"],
-          ["M", "52", "72"],
-          ["L", "55", "74"],
-          ["XL", "58", "76"],
-          ["2XL", "61", "78"],
-          ["3XL", "64", "80"]
+          [
+            "XS",
+            "46",
+            "68"
+          ],
+          [
+            "S",
+            "49",
+            "70"
+          ],
+          [
+            "M",
+            "52",
+            "72"
+          ],
+          [
+            "L",
+            "55",
+            "74"
+          ],
+          [
+            "XL",
+            "58",
+            "76"
+          ],
+          [
+            "2XL",
+            "61",
+            "78"
+          ],
+          [
+            "3XL",
+            "64",
+            "80"
+          ]
         ]
       }
     },
@@ -41,29 +120,103 @@
       "name": "Heavy Fleece Hoodie",
       "category": "Hoodies",
       "printPoppaCode": "PP-HOOD-350",
+      "photo": {
+        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "printArea": {
+          "x": 0.31,
+          "y": 0.3,
+          "w": 0.38,
+          "h": 0.26
+        }
+      },
       "price": 130,
       "blurb": "350gsm brushed-back fleece, double-lined hood, kangaroo pocket. Weighty enough to hold a full front print.",
       "fabric": "80% cotton / 20% polyester, 350gsm",
       "printMethod": "Direct to garment (DTG)",
       "fit": "Unisex, relaxed. Roomy through the body.",
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
       "colours": [
-        { "name": "Black", "hex": "#0d0d0f", "tone": "dark" },
-        { "name": "Bone", "hex": "#e8e2d6", "tone": "light" },
-        { "name": "Charcoal Marle", "hex": "#41454a", "tone": "dark" },
-        { "name": "Storm", "hex": "#5d6670", "tone": "dark" },
-        { "name": "Sand", "hex": "#c8b79b", "tone": "light" }
+        {
+          "name": "Black",
+          "hex": "#0d0d0f",
+          "tone": "dark",
+          "_image": "assets/garments/hoodie-black.jpg"
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e2d6",
+          "tone": "light",
+          "_image": "assets/garments/hoodie-bone.jpg"
+        },
+        {
+          "name": "Charcoal Marle",
+          "hex": "#41454a",
+          "tone": "dark",
+          "_image": "assets/garments/hoodie-charcoal-marle.jpg"
+        },
+        {
+          "name": "Storm",
+          "hex": "#5d6670",
+          "tone": "dark",
+          "_image": "assets/garments/hoodie-storm.jpg"
+        },
+        {
+          "name": "Sand",
+          "hex": "#c8b79b",
+          "tone": "light",
+          "_image": "assets/garments/hoodie-sand.jpg"
+        }
       ],
       "sizeGuide": {
-        "columns": ["Size", "Chest (cm)", "Length (cm)"],
+        "columns": [
+          "Size",
+          "Chest (cm)",
+          "Length (cm)"
+        ],
         "rows": [
-          ["XS", "52", "66"],
-          ["S", "55", "68"],
-          ["M", "58", "70"],
-          ["L", "61", "72"],
-          ["XL", "64", "74"],
-          ["2XL", "67", "76"],
-          ["3XL", "70", "78"]
+          [
+            "XS",
+            "52",
+            "66"
+          ],
+          [
+            "S",
+            "55",
+            "68"
+          ],
+          [
+            "M",
+            "58",
+            "70"
+          ],
+          [
+            "L",
+            "61",
+            "72"
+          ],
+          [
+            "XL",
+            "64",
+            "74"
+          ],
+          [
+            "2XL",
+            "67",
+            "76"
+          ],
+          [
+            "3XL",
+            "70",
+            "78"
+          ]
         ]
       }
     },
@@ -72,26 +225,85 @@
       "name": "Coach Jacket",
       "category": "Jackets",
       "printPoppaCode": "PP-COACH-01",
+      "photo": {
+        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "printArea": {
+          "x": 0.28,
+          "y": 0.26,
+          "w": 0.44,
+          "h": 0.34
+        }
+      },
       "price": 165,
       "blurb": "Wind-resistant shell, snap front, mesh lining. Back panel is the hero print area.",
       "fabric": "Poly shell, mesh lined",
       "printMethod": "Heat transfer (poly shell)",
       "fit": "Unisex, roomy. Layers over a hoodie.",
-      "sizes": ["S", "M", "L", "XL", "2XL"],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
       "colours": [
-        { "name": "Black", "hex": "#0d0d0f", "tone": "dark" },
-        { "name": "Ink", "hex": "#1b2233", "tone": "dark" },
-        { "name": "Bone", "hex": "#e8e2d6", "tone": "light" },
-        { "name": "Olive", "hex": "#4c5140", "tone": "dark" }
+        {
+          "name": "Black",
+          "hex": "#0d0d0f",
+          "tone": "dark",
+          "_image": "assets/garments/jacket-black.jpg"
+        },
+        {
+          "name": "Ink",
+          "hex": "#1b2233",
+          "tone": "dark",
+          "_image": "assets/garments/jacket-ink.jpg"
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e2d6",
+          "tone": "light",
+          "_image": "assets/garments/jacket-bone.jpg"
+        },
+        {
+          "name": "Olive",
+          "hex": "#4c5140",
+          "tone": "dark",
+          "_image": "assets/garments/jacket-olive.jpg"
+        }
       ],
       "sizeGuide": {
-        "columns": ["Size", "Chest (cm)", "Length (cm)"],
+        "columns": [
+          "Size",
+          "Chest (cm)",
+          "Length (cm)"
+        ],
         "rows": [
-          ["S", "56", "69"],
-          ["M", "59", "71"],
-          ["L", "62", "73"],
-          ["XL", "65", "75"],
-          ["2XL", "68", "77"]
+          [
+            "S",
+            "56",
+            "69"
+          ],
+          [
+            "M",
+            "59",
+            "71"
+          ],
+          [
+            "L",
+            "62",
+            "73"
+          ],
+          [
+            "XL",
+            "65",
+            "75"
+          ],
+          [
+            "2XL",
+            "68",
+            "77"
+          ]
         ]
       }
     },
@@ -100,29 +312,100 @@
       "name": "Six Panel Cap",
       "category": "Hats",
       "printPoppaCode": "PP-CAP-6P",
+      "photo": {
+        "_comment": "Print area as fractions of the product photo (0-1). Applies to every colour of this garment; a colour may override it with its own printArea. Tune against the real photography.",
+        "printArea": {
+          "x": 0.38,
+          "y": 0.34,
+          "w": 0.24,
+          "h": 0.14
+        }
+      },
       "price": 45,
       "blurb": "Structured six panel, curved brim, adjustable strap. Front panel print or embroidery.",
       "fabric": "Cotton twill",
       "printMethod": "Heat transfer or embroidery",
       "fit": "One size, adjustable.",
-      "sizes": ["One Size"],
+      "sizes": [
+        "One Size"
+      ],
       "colours": [
-        { "name": "Black", "hex": "#0d0d0f", "tone": "dark" },
-        { "name": "Bone", "hex": "#e8e2d6", "tone": "light" },
-        { "name": "Slate", "hex": "#3a4047", "tone": "dark" },
-        { "name": "Oxide", "hex": "#7b3b2e", "tone": "dark" }
+        {
+          "name": "Black",
+          "hex": "#0d0d0f",
+          "tone": "dark",
+          "_image": "assets/garments/cap-black.jpg"
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e2d6",
+          "tone": "light",
+          "_image": "assets/garments/cap-bone.jpg"
+        },
+        {
+          "name": "Slate",
+          "hex": "#3a4047",
+          "tone": "dark",
+          "_image": "assets/garments/cap-slate.jpg"
+        },
+        {
+          "name": "Oxide",
+          "hex": "#7b3b2e",
+          "tone": "dark",
+          "_image": "assets/garments/cap-oxide.jpg"
+        }
       ],
       "sizeGuide": {
-        "columns": ["Size", "Circumference (cm)"],
-        "rows": [["One Size", "55–61 adjustable"]]
+        "columns": [
+          "Size",
+          "Circumference (cm)"
+        ],
+        "rows": [
+          [
+            "One Size",
+            "55–61 adjustable"
+          ]
+        ]
       }
     }
   ],
   "shipping": [
-    { "id": "nz-standard", "label": "New Zealand — Standard", "price": 8, "eta": "3–5 working days", "regions": ["NZ"] },
-    { "id": "nz-rural", "label": "New Zealand — Rural", "price": 12, "eta": "4–7 working days", "regions": ["NZ"] },
-    { "id": "au-standard", "label": "Australia", "price": 22, "eta": "7–12 working days", "regions": ["AU"] },
-    { "id": "intl", "label": "Rest of world", "price": 38, "eta": "10–20 working days", "regions": ["INTL"] }
+    {
+      "id": "nz-standard",
+      "label": "New Zealand — Standard",
+      "price": 8,
+      "eta": "3–5 working days",
+      "regions": [
+        "NZ"
+      ]
+    },
+    {
+      "id": "nz-rural",
+      "label": "New Zealand — Rural",
+      "price": 12,
+      "eta": "4–7 working days",
+      "regions": [
+        "NZ"
+      ]
+    },
+    {
+      "id": "au-standard",
+      "label": "Australia",
+      "price": 22,
+      "eta": "7–12 working days",
+      "regions": [
+        "AU"
+      ]
+    },
+    {
+      "id": "intl",
+      "label": "Rest of world",
+      "price": 38,
+      "eta": "10–20 working days",
+      "regions": [
+        "INTL"
+      ]
+    }
   ],
   "freeShippingThreshold": 180
 }

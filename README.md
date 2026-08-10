@@ -202,15 +202,54 @@ hand-editing it:
 
 ## Garment mockups
 
-`assets/js/garments.js` draws the tee, hoodie, jacket and cap as vectors and fills them
-with the selected colour, so every colourway exists without a photo library. Each garment
-declares a `print` rectangle that the artwork is fitted into.
+`assets/js/garments.js` has two modes and picks per colourway:
+
+- **Photo** — when a colour has an `image`, that product photo *is* the mockup and the
+  artwork is composited into the garment's print area.
+- **Vector** — otherwise it draws the garment and fills it with the colour's hex.
+
+They mix freely, so photography can land one garment (or one colour) at a time without the
+grid looking broken in the meantime.
 
 The jacket is drawn from the **back**, because a coach jacket's snap placket splits the
 front — the back panel is the print surface.
 
-When real Print Poppa product photography is available, replacing `render()` is the only
-change needed; every page calls through it.
+### Switching a colourway to a real photo
+
+1. Drop the photo in `assets/garments/`.
+2. In `data/catalog.json`, rename that colour's `"_image"` key to `"image"`.
+
+That's the whole change — no code. Every colour already carries an `_image` line with the
+filename it expects, so the naming is decided for you.
+
+The print position comes from the garment's `photo.printArea`, expressed as fractions of
+the image (`0`–`1`) so it is resolution-independent. The values in there now are estimates;
+nudge them once you can see them against the real photography. A single odd colourway shot
+on a different template can override it with its own `printArea`.
+
+**The print blends differently by fabric tone, and this matters.** On a `light` colour the
+artwork is multiplied so the garment's folds and shadows read through it, the way ink sits
+in a weave. On a `dark` colour it stays opaque, because DTG lays a white underbase first —
+multiplying there would make the print vanish. That's driven by each colour's `tone`, so
+set it correctly.
+
+### What to ask Print Poppa for
+
+Their blank catalogue isn't published on their site — the styles and colours live inside
+their designer tool. So this needs to come from Campbell directly:
+
+- **The blank range you're actually selling**: style codes, the colours each style comes in
+  (name + a hex or a physical swatch), and available sizes.
+- **Your pricing** on those blanks, and whether the quoted figures include GST.
+- **Product photography** for each colourway, and confirmation you're allowed to use it on
+  your storefront. Shot flat, front-on, same framing and crop across every colour of a
+  style — consistent framing is what lets one `printArea` serve the whole style.
+- **Print area dimensions** in cm for each style, and the maximum print size.
+- **Confirmation of the dropship terms** — their site advertises free dropship direct to
+  customers and no minimums, which is exactly what this store assumes.
+
+Ideally as a spreadsheet plus a folder of images; that maps straight onto
+`data/catalog.json` with no interpretation needed.
 
 ---
 

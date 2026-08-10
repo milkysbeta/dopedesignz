@@ -83,7 +83,7 @@
 
         return '<a class="card" href="' + href + '" data-reveal>' +
             '<div class="card__media">' +
-              window.GarmentMockup.render(gid, colour.hex, d.artHref) +
+              window.GarmentMockup.render(gid, colour, d.artHref) +
             '</div>' +
             '<div class="card__body">' +
               '<div class="card__row">' +

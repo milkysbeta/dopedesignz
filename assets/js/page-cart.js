@@ -32,9 +32,17 @@
           '<div>' +
             items.map(function (i) {
               var key = Store.Cart.key(i);
+              /* Look the colour up rather than trusting the stored hex, so a line
+                 saved before a photo shoot still renders with the new imagery.
+                 A colour retired since it was added falls back to the hex. */
+              var g = data.garment(i.garmentId);
+              var colour = (g && g.colours.filter(function (c) {
+                return c.name === i.colour;
+              })[0]) || { hex: i.colourHex };
+
               return '<div class="line-item" data-key="' + Store.escapeHtml(key) + '">' +
                   '<div class="line-item__media">' +
-                    window.GarmentMockup.render(i.garmentId, i.colourHex, Store.base + i.artHref) +
+                    window.GarmentMockup.render(i.garmentId, colour, Store.base + i.artHref) +
                   '</div>' +
                   '<div>' +
                     '<p class="line-item__title">' + Store.escapeHtml(i.designTitle) + '</p>' +
