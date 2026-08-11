@@ -42,7 +42,8 @@
 
               return '<div class="line-item" data-key="' + Store.escapeHtml(key) + '">' +
                   '<div class="line-item__media">' +
-                    window.GarmentMockup.render(i.garmentId, colour, Store.base + i.artHref) +
+                    window.GarmentMockup.render(i.garmentId, colour, Store.base + i.artHref,
+                      { area: Store.printArea(g, data.design(i.designId)) }) +
                   '</div>' +
                   '<div>' +
                     '<p class="line-item__title">' + Store.escapeHtml(i.designTitle) + '</p>' +

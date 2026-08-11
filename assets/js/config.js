@@ -7,7 +7,7 @@
 window.SITE_CONFIG = {
   brand: {
     name: 'Dope Designs',
-    tagline: 'Wearable generative art',
+    tagline: 'Artist-made apparel',
     email: 'hello@example.co.nz',
     instagram: '',
     location: 'Aotearoa New Zealand'

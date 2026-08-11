@@ -12,12 +12,26 @@
       "asColourStyle": "5080",
       "wholesaleExGst": 36.48,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1).",
-        "printArea": {
-          "x": 0.35,
-          "y": 0.33,
-          "w": 0.3,
-          "h": 0.3
+        "_comment": "Named print positions as fractions of the product photo (0-1). A design picks one via its `placement` field; `frontCentre` is the default.",
+        "printAreas": {
+          "frontCentre": {
+            "x": 0.35,
+            "y": 0.33,
+            "w": 0.3,
+            "h": 0.3
+          },
+          "leftChest": {
+            "x": 0.56,
+            "y": 0.315,
+            "w": 0.105,
+            "h": 0.105
+          },
+          "fullFront": {
+            "x": 0.3,
+            "y": 0.29,
+            "w": 0.4,
+            "h": 0.4
+          }
         }
       },
       "price": 69,
@@ -83,12 +97,26 @@
       "asColourStyle": "5146",
       "wholesaleExGst": 67.83,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1).",
-        "printArea": {
-          "x": 0.35,
-          "y": 0.405,
-          "w": 0.3,
-          "h": 0.205
+        "_comment": "Named print positions as fractions of the product photo (0-1). A design picks one via its `placement` field; `frontCentre` is the default.",
+        "printAreas": {
+          "frontCentre": {
+            "x": 0.35,
+            "y": 0.405,
+            "w": 0.3,
+            "h": 0.205
+          },
+          "leftChest": {
+            "x": 0.575,
+            "y": 0.36,
+            "w": 0.095,
+            "h": 0.095
+          },
+          "fullFront": {
+            "x": 0.32,
+            "y": 0.38,
+            "w": 0.36,
+            "h": 0.24
+          }
         }
       },
       "price": 139,
@@ -147,12 +175,26 @@
       "asColourStyle": "5520",
       "wholesaleExGst": 65.22,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1).",
-        "printArea": {
-          "x": 0.305,
-          "y": 0.3,
-          "w": 0.39,
-          "h": 0.32
+        "_comment": "Named print positions as fractions of the product photo (0-1). A design picks one via its `placement` field; `frontCentre` is the default.",
+        "printAreas": {
+          "frontCentre": {
+            "x": 0.305,
+            "y": 0.3,
+            "w": 0.39,
+            "h": 0.32
+          },
+          "leftChest": {
+            "x": 0.575,
+            "y": 0.3,
+            "w": 0.1,
+            "h": 0.1
+          },
+          "fullFront": {
+            "x": 0.29,
+            "y": 0.285,
+            "w": 0.42,
+            "h": 0.36
+          }
         }
       },
       "price": 145,
@@ -198,12 +240,26 @@
       "asColourStyle": "1100",
       "wholesaleExGst": 26.04,
       "photo": {
-        "_comment": "Print area as fractions of the product photo (0-1).",
-        "printArea": {
-          "x": 0.425,
-          "y": 0.345,
-          "w": 0.15,
-          "h": 0.11
+        "_comment": "Named print positions as fractions of the product photo (0-1). A design picks one via its `placement` field; `frontCentre` is the default.",
+        "printAreas": {
+          "frontCentre": {
+            "x": 0.425,
+            "y": 0.345,
+            "w": 0.15,
+            "h": 0.11
+          },
+          "leftChest": {
+            "x": 0.425,
+            "y": 0.345,
+            "w": 0.15,
+            "h": 0.11
+          },
+          "fullFront": {
+            "x": 0.405,
+            "y": 0.335,
+            "w": 0.19,
+            "h": 0.135
+          }
         }
       },
       "price": 49,

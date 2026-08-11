@@ -1,5 +1,5 @@
 {
-  "_comment": "PLACEHOLDER ARTWORK. The SVGs in assets/designs/ are generated stand-ins. Replace `art` with real 300dpi PNGs on transparent backgrounds (see README) — everything else on this record can stay.",
+  "_comment": "PLACEHOLDER ARTWORK — the SVGs in assets/designs/ are generated stand-ins. `placement` names a print position defined per garment in catalog.json (frontCentre | leftChest | fullFront). It may also be an object keyed by garment id when one cut needs different treatment, e.g. {\"tee\":\"leftChest\",\"cap\":\"frontCentre\"}.",
   "designs": [
     {
       "id": "ripple",
@@ -10,8 +10,12 @@
       "art": "assets/designs/ripple.svg",
       "blurb": "The wave field from the shader, held still. Forty-six rings collapsing towards a single point of light.",
       "story": "Pulled straight from the interference pattern that runs behind this site. What the screen does in motion, cotton has to do in one frame — so the frame was chosen carefully.",
-      "garments": ["tee", "hoodie", "jacket"],
-      "placement": "Front centre",
+      "garments": [
+        "tee",
+        "hoodie",
+        "jacket"
+      ],
+      "placement": "frontCentre",
       "featured": true,
       "accent": "#8fe8ff"
     },
@@ -24,8 +28,12 @@
       "art": "assets/designs/chrome-fold.svg",
       "blurb": "A liquid-metal mass caught mid-fold, with the ghost of where it just was trailing behind it.",
       "story": "Metal that hasn't decided whether it is solid yet. The trailing outlines are the same shape, one frame earlier, seven times over.",
-      "garments": ["tee", "hoodie", "jacket"],
-      "placement": "Front centre",
+      "garments": [
+        "tee",
+        "hoodie",
+        "jacket"
+      ],
+      "placement": "frontCentre",
       "featured": true,
       "accent": "#c9d6ee"
     },
@@ -38,8 +46,11 @@
       "art": "assets/designs/prism.svg",
       "blurb": "White light broken into twenty-six bars. A spectrum read as a skyline.",
       "story": "The refraction pass of the shader, sampled column by column and stacked vertically.",
-      "garments": ["tee", "hoodie"],
-      "placement": "Front centre",
+      "garments": [
+        "tee",
+        "hoodie"
+      ],
+      "placement": "frontCentre",
       "featured": true,
       "accent": "#b9a6ff"
     },
@@ -52,8 +63,13 @@
       "art": "assets/designs/aperture.svg",
       "blurb": "A hard sun. Forty-eight rays on a black pupil — the one design that holds its shape at any size.",
       "story": "Built to survive being shrunk onto a cap front. Everything decorative was removed until only the silhouette carried it.",
-      "garments": ["tee", "hoodie", "cap", "jacket"],
-      "placement": "Front centre / cap front",
+      "garments": [
+        "tee",
+        "hoodie",
+        "cap",
+        "jacket"
+      ],
+      "placement": "frontCentre",
       "featured": true,
       "accent": "#ff9ecb"
     },
@@ -66,8 +82,12 @@
       "art": "assets/designs/orbit.svg",
       "blurb": "Five ellipses on one axis. The quietest piece in the range.",
       "story": "Placeholder story text. Replace with the artist's own words about the work.",
-      "garments": ["tee", "cap", "jacket"],
-      "placement": "Front centre / cap front",
+      "garments": [
+        "tee",
+        "cap",
+        "jacket"
+      ],
+      "placement": "frontCentre",
       "featured": false,
       "accent": "#8fe8ff"
     },
@@ -80,8 +100,12 @@
       "art": "assets/designs/topography.svg",
       "blurb": "Contour lines that stopped describing land and started describing sound.",
       "story": "Placeholder story text. Replace with the artist's own words about the work.",
-      "garments": ["tee", "hoodie", "jacket"],
-      "placement": "Full front",
+      "garments": [
+        "tee",
+        "hoodie",
+        "jacket"
+      ],
+      "placement": "fullFront",
       "featured": true,
       "accent": "#9cffd2"
     },
@@ -94,8 +118,11 @@
       "art": "assets/designs/tear.svg",
       "blurb": "Seventy displaced scanlines and one square that refuses to move.",
       "story": "Placeholder story text. Replace with the artist's own words about the work.",
-      "garments": ["tee", "hoodie"],
-      "placement": "Front centre",
+      "garments": [
+        "tee",
+        "hoodie"
+      ],
+      "placement": "frontCentre",
       "featured": false,
       "accent": "#ff9ecb"
     },
@@ -108,8 +135,12 @@
       "art": "assets/designs/streamline.svg",
       "blurb": "Momentum drawn as a field — thirty-four lines pulled through the same current.",
       "story": "Placeholder story text. Replace with the artist's own words about the work.",
-      "garments": ["tee", "hoodie", "jacket"],
-      "placement": "Full front / back panel",
+      "garments": [
+        "tee",
+        "hoodie",
+        "jacket"
+      ],
+      "placement": "fullFront",
       "featured": false,
       "accent": "#9cffd2"
     }

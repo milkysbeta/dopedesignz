@@ -67,7 +67,9 @@
     function stageMarkup() {
       return window.GarmentMockup.render(
         state.garmentId, colour(), design.artHref,
-        { showPrintArea: state.showPrintArea, size: 'stage', alt: design.title + ' on ' + garment().name }
+        { showPrintArea: state.showPrintArea, size: 'stage',
+          area: Store.printArea(garment(), design),
+          alt: design.title + ' on ' + garment().name }
       );
     }
 
@@ -145,7 +147,7 @@
         '<details class="spec"><summary>About this piece</summary>' +
           '<div class="spec__body"><p>' + Store.escapeHtml(design.story) + '</p>' +
           '<p style="margin-top:1rem"><span class="meta">Placement &middot; ' +
-            Store.escapeHtml(design.placement) + '</span></p>' +
+            Store.escapeHtml(Store.placementLabel(design, g)) + '</span></p>' +
           '<p style="margin-top:.6rem"><button class="btn btn--sm btn--ghost" type="button" ' +
             'data-toggle-print>' + (state.showPrintArea ? 'Hide' : 'Show') + ' print area</button></p>' +
           '</div></details>' +
@@ -273,7 +275,8 @@
         var g = data.garment(gid);
         return '<a class="card" href="product.html?design=' + d.id + '">' +
             '<div class="card__media">' +
-              window.GarmentMockup.render(gid, Store.previewColour(g, d), d.artHref) + '</div>' +
+              window.GarmentMockup.render(gid, Store.previewColour(g, d), d.artHref,
+                { area: Store.printArea(g, d) }) + '</div>' +
             '<div class="card__body"><div class="card__row">' +
               '<span class="card__title">' + Store.escapeHtml(d.title) + '</span>' +
               '<span class="card__price">from ' + Store.money(Store.fromPrice(data, d)) + '</span>' +

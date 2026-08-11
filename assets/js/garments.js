@@ -51,7 +51,8 @@
    * @returns {Promise<string>} data URL of the finished image
    */
   function composite(opts) {
-    var key = [opts.photo, opts.art, opts.size, opts.showPrintArea ? 'g' : ''].join('|');
+    var key = [opts.photo, opts.art, opts.size, opts.showPrintArea ? 'g' : '',
+               opts.area.x, opts.area.y, opts.area.w, opts.area.h].join('|');
     if (CACHE[key]) return Promise.resolve(CACHE[key]);
     if (PENDING[key]) return PENDING[key];
 
@@ -166,13 +167,14 @@
     opts = opts || {};
     if (typeof colour === 'string') colour = { hex: colour };
     if (!colour.image) return '';
+    var area = opts.area || colour.printArea;
+    if (!area) return '';
 
     var attrs = {
       'data-mockup': '',
       'data-photo': colour.image,
       'data-art': artHref || '',
-      'data-area': [colour.printArea.x, colour.printArea.y,
-                    colour.printArea.w, colour.printArea.h].join(','),
+      'data-area': [area.x, area.y, area.w, area.h].join(','),
       'data-tone': colour.tone || 'dark',
       'data-displace': colour.displace != null ? colour.displace : 9,
       'data-shading': colour.shading != null ? colour.shading : 0.85,

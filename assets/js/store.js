@@ -29,9 +29,7 @@
            the colour record. A colour may override the area — useful when one
            colourway was shot on a different template. */
         g.colours.forEach(function (c) {
-          if (!c.image) return;
-          c.image = base + c.image;
-          if (!c.printArea && g.photo) c.printArea = g.photo.printArea;
+          if (c.image) c.image = base + c.image;
         });
       });
       artists.forEach(function (a) { byArtist[a.id] = a; });
@@ -275,6 +273,35 @@
   }
 
   /**
+   * Where a design prints on a garment.
+   *
+   * A design names a position ("leftChest") rather than carrying coordinates, so
+   * the same design lands correctly on every garment — and a design can override
+   * per garment when one cut needs different treatment.
+   */
+  function printArea(garment, design) {
+    var areas = (garment.photo && garment.photo.printAreas) || {};
+    var want = design && design.placement;
+    if (want && typeof want === 'object') want = want[garment.id];      // per-garment override
+    return areas[want] || areas.frontCentre || { x: 0.35, y: 0.33, w: 0.30, h: 0.30 };
+  }
+
+  var PLACEMENT_LABELS = {
+    frontCentre: 'Front centre',
+    leftChest: 'Left chest',
+    fullFront: 'Full front'
+  };
+
+  /** Human wording for a design's print position on a given garment. */
+  function placementLabel(design, garment) {
+    var want = design && design.placement;
+    if (want && typeof want === 'object') want = want[garment.id];
+    if (garment.id === 'cap') return 'Cap front';
+    if (garment.id === 'jacket' && want === 'frontCentre') return 'Back panel';
+    return PLACEMENT_LABELS[want] || 'Front centre';
+  }
+
+  /**
    * Pick a preview colourway for a card. Deterministic per design+garment so the
    * grid never reshuffles between loads, but varied enough that a page of cards
    * is not eight identical black tees.
@@ -310,6 +337,8 @@
     escapeHtml: escapeHtml,
     fromPrice: fromPrice,
     previewColour: previewColour,
+    printArea: printArea,
+    placementLabel: placementLabel,
     mountReveal: mountReveal
   };
 
