@@ -406,9 +406,19 @@ table.size-table th { color: var(--ink-faint); font-weight: 400; letter-spacing:
 .site-footer__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line-soft); }
 
 /* --- Reveal on scroll --------------------------------------------------- */
-[data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-[data-reveal].is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; transform: none; } }
+/* The hidden state is scoped to `.js`, which the inline script in each page's
+ * head sets. Unscoped, `opacity: 0` is a trap: anything that stops `mountReveal`
+ * from running — an error earlier in store.js, IntersectionObserver throwing —
+ * leaves the markup present but permanently invisible, which looks like a blank
+ * page rather than a broken script. Scoped, that failure degrades to "no
+ * animation" instead.
+ *
+ * Note this does NOT make the site work without JavaScript: the pages are built
+ * client-side by assets/js/page-*.js, so with scripts off there is no content to
+ * reveal in the first place. */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js [data-reveal] { opacity: 1; transform: none; } }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
