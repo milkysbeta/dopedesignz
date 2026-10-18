@@ -52,7 +52,8 @@
    */
   function composite(opts) {
     var key = [opts.photo, opts.art, opts.size, opts.showPrintArea ? 'g' : '',
-               opts.area.x, opts.area.y, opts.area.w, opts.area.h].join('|');
+               opts.area.x, opts.area.y, opts.area.w, opts.area.h,
+               opts.knockout || '', opts.knockoutTol || ''].join('|');
     if (CACHE[key]) return Promise.resolve(CACHE[key]);
     if (PENDING[key]) return PENDING[key];
 
@@ -80,6 +81,30 @@
         var garment = ctx.getImageData(px, py, pw, ph);
         var ink = lctx.getImageData(0, 0, pw, ph);
         var g = garment.data, k = ink.data;
+
+        /* Knock the artwork's background out to transparency.
+         *
+         * Scanned and exported artwork usually arrives as a flat PNG or JPEG
+         * with no alpha at all, so pasting it would print the paper as well as
+         * the ink — a white or black rectangle sitting on the garment. DTG does
+         * not print white onto a dark blank by default either, so "white on
+         * black" art has to lose its black before it can go on an ecru tee.
+         *
+         * The cut is soft: alpha ramps across `tol` luma rather than switching
+         * at a threshold, so antialiased edges stay smooth instead of getting a
+         * hard fringe. Art that already has real transparency keeps it, because
+         * the computed alpha is multiplied onto the existing channel. */
+        if (opts.knockout === 'white' || opts.knockout === 'black') {
+          var tol = opts.knockoutTol > 0 ? opts.knockoutTol : 28;
+          var white = opts.knockout === 'white';
+          for (var q = 0; q < k.length; q += 4) {
+            var kl = k[q] * 0.299 + k[q + 1] * 0.587 + k[q + 2] * 0.114;
+            /* Distance into the artwork, away from the background colour. */
+            var d = white ? (255 - kl) : kl;
+            var aMul = d / tol;
+            k[q + 3] *= aMul < 0 ? 0 : (aMul > 1 ? 1 : aMul);
+          }
+        }
 
         /* Mean brightness of the fabric under the print, used as the neutral
            point so shading darkens and lightens around the true fabric tone. */
@@ -180,7 +205,9 @@
       'data-shading': colour.shading != null ? colour.shading : 0.85,
       'data-ink': colour.inkOpacity != null ? colour.inkOpacity : 0.97,
       'data-size': opts.size === 'stage' ? SIZES.stage : SIZES.card,
-      'data-guide': opts.showPrintArea ? '1' : ''
+      'data-guide': opts.showPrintArea ? '1' : '',
+      'data-knockout': opts.knockout || '',
+      'data-knockout-tol': opts.knockoutTol || ''
     };
     var s = '';
     for (var k in attrs) s += ' ' + k + '="' + String(attrs[k]).replace(/"/g, '&quot;') + '"';
@@ -200,7 +227,9 @@
       shading: Number(el.getAttribute('data-shading')),
       inkOpacity: Number(el.getAttribute('data-ink')),
       size: Number(el.getAttribute('data-size')),
-      showPrintArea: !!el.getAttribute('data-guide')
+      showPrintArea: !!el.getAttribute('data-guide'),
+      knockout: el.getAttribute('data-knockout') || null,
+      knockoutTol: Number(el.getAttribute('data-knockout-tol')) || 0
     }).then(function (url) { el.src = url; });
   }
 

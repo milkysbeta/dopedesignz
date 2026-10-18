@@ -67,9 +67,9 @@
     function stageMarkup() {
       return window.GarmentMockup.render(
         state.garmentId, colour(), design.artHref,
-        { showPrintArea: state.showPrintArea, size: 'stage',
-          area: Store.printArea(garment(), design),
-          alt: design.title + ' on ' + garment().name }
+        Store.mockOpts(garment(), design,
+          { showPrintArea: state.showPrintArea, size: 'stage',
+            alt: design.title + ' on ' + garment().name })
       );
     }
 
@@ -276,7 +276,7 @@
         return '<a class="card" href="product.html?design=' + d.id + '">' +
             '<div class="card__media">' +
               window.GarmentMockup.render(gid, Store.previewColour(g, d), d.artHref,
-                { area: Store.printArea(g, d) }) + '</div>' +
+                Store.mockOpts(g, d)) + '</div>' +
             '<div class="card__body"><div class="card__row">' +
               '<span class="card__title">' + Store.escapeHtml(d.title) + '</span>' +
               '<span class="card__price">from ' + Store.money(Store.fromPrice(data, d)) + '</span>' +

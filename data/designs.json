@@ -1,5 +1,5 @@
 {
-  "_comment": "PLACEHOLDER ARTWORK — the SVGs in assets/designs/ are generated stand-ins. `placement` names a print position defined per garment in catalog.json (frontCentre | leftChest | fullFront). It may also be an object keyed by garment id when one cut needs different treatment, e.g. {\"tee\":\"leftChest\",\"cap\":\"frontCentre\"}.",
+  "_comment": "PLACEHOLDER ARTWORK — the SVGs in assets/designs/ are generated stand-ins and are ALL attributed to the house line on purpose: putting a guest artist's name on work they did not make would be a false credit. Assign artistId to a real artist only when that artist's own file is in assets/designs/. `placement` names a print position defined per garment in catalog.json (frontCentre | leftChest | fullFront), or an object keyed by garment id, e.g. {\"tee\":\"leftChest\",\"cap\":\"frontCentre\"}. `knockout` ('white'|'black') drops a flat artwork background to transparency so a PNG with no alpha does not print as a rectangle; `knockoutTol` (default 28) widens or tightens that cut.",
   "designs": [
     {
       "id": "ripple",
@@ -76,7 +76,7 @@
     {
       "id": "orbit",
       "title": "Orbit",
-      "artistId": "artist-two",
+      "artistId": "house",
       "collection": "Signals",
       "year": 2026,
       "art": "assets/designs/orbit.svg",
@@ -94,7 +94,7 @@
     {
       "id": "topography",
       "title": "Topography",
-      "artistId": "artist-two",
+      "artistId": "house",
       "collection": "Terrain",
       "year": 2026,
       "art": "assets/designs/topography.svg",
@@ -112,7 +112,7 @@
     {
       "id": "tear",
       "title": "Tear",
-      "artistId": "artist-three",
+      "artistId": "house",
       "collection": "Terrain",
       "year": 2026,
       "art": "assets/designs/tear.svg",
@@ -129,7 +129,7 @@
     {
       "id": "streamline",
       "title": "Streamline",
-      "artistId": "artist-three",
+      "artistId": "house",
       "collection": "Terrain",
       "year": 2026,
       "art": "assets/designs/streamline.svg",

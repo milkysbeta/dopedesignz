@@ -84,7 +84,7 @@
         return '<a class="card" href="' + href + '" data-reveal>' +
             '<div class="card__media">' +
               window.GarmentMockup.render(gid, colour, d.artHref,
-                { area: Store.printArea(garment, d), alt: d.title + ' on ' + garment.name }) +
+                Store.mockOpts(garment, d, { alt: d.title + ' on ' + garment.name })) +
             '</div>' +
             '<div class="card__body">' +
               '<div class="card__row">' +

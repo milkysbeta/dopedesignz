@@ -286,6 +286,25 @@
     return areas[want] || areas.frontCentre || { x: 0.35, y: 0.33, w: 0.30, h: 0.30 };
   }
 
+  /**
+   * Mockup options for one design on one garment.
+   *
+   * Everything that comes off the design record rather than the call site lives
+   * here, so a new artwork property is wired in one place instead of in each of
+   * the six grids that draw a mockup.
+   *
+   * @param {object} extra  per-call additions (size, alt, showPrintArea)
+   */
+  function mockOpts(garment, design, extra) {
+    var o = { area: printArea(garment, design) };
+    if (design && design.knockout) {
+      o.knockout = design.knockout;
+      if (design.knockoutTol) o.knockoutTol = design.knockoutTol;
+    }
+    for (var k in (extra || {})) o[k] = extra[k];
+    return o;
+  }
+
   var PLACEMENT_LABELS = {
     frontCentre: 'Front centre',
     leftChest: 'Left chest',
@@ -338,6 +357,7 @@
     fromPrice: fromPrice,
     previewColour: previewColour,
     printArea: printArea,
+    mockOpts: mockOpts,
     placementLabel: placementLabel,
     mountReveal: mountReveal
   };

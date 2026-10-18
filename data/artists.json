@@ -1,5 +1,5 @@
 {
-  "_comment": "PLACEHOLDER ARTISTS. Replace with real names, bios and links. `royalty` is internal-only and is never rendered on the public site — it is carried through to the fulfilment record so payouts can be reconciled per sale.",
+  "_comment": "`royalty` is internal-only and is never rendered on the public site — it is carried through to the fulfilment record so payouts can be reconciled per sale. NAMES AND BIOS FOR THE GUEST ARTISTS ARE STILL UNCONFIRMED: they were taken down from a spoken list, so check the spelling of each one with the artist before this goes public. Only Lukasha's handle is verified (from the Instagram link supplied).",
   "artists": [
     {
       "id": "house",
@@ -11,20 +11,29 @@
       "royalty": 0
     },
     {
-      "id": "artist-two",
-      "name": "Second Artist",
+      "id": "lukasha",
+      "name": "Lukasha",
       "role": "Guest artist",
-      "location": "Tāmaki Makaurau",
-      "bio": "Placeholder bio. Swap in the real artist statement — two or three sentences on what they make and why, written in their voice rather than yours.",
+      "location": "Aotearoa New Zealand",
+      "bio": "PLACEHOLDER BIO — replace with Lukasha's own words, two or three sentences on what they make and why, written in their voice rather than yours.",
+      "links": [{ "label": "Instagram", "href": "https://www.instagram.com/lukasha_lv/" }],
+      "royalty": 0.15
+    },
+    {
+      "id": "lovecourt",
+      "name": "Love Court",
+      "role": "Guest artist",
+      "location": "Aotearoa New Zealand",
+      "bio": "PLACEHOLDER BIO — replace with the artist's own words. CHECK THE SPELLING of this name: it was taken down from speech and may be one word, Lovecourt.",
       "links": [],
       "royalty": 0.15
     },
     {
-      "id": "artist-three",
-      "name": "Third Artist",
+      "id": "rosie",
+      "name": "Rosie",
       "role": "Guest artist",
-      "location": "Ōtautahi",
-      "bio": "Placeholder bio. Guest artists rotate through the drop schedule — each one gets a profile here and their designs carry their name at checkout.",
+      "location": "Aotearoa New Zealand",
+      "bio": "PLACEHOLDER BIO — replace with the artist's own words. CHECK THE NAME: the folder was given as \"Rosie Art\", so the artist may go by something else.",
       "links": [],
       "royalty": 0.15
     }

@@ -15,7 +15,7 @@
         return '<a class="card" href="product.html?design=' + d.id + '" data-reveal>' +
             '<div class="card__media">' +
               window.GarmentMockup.render(garment.id, colour, d.artHref,
-                { area: Store.printArea(garment, d), alt: d.title + ' on ' + garment.name }) +
+                Store.mockOpts(garment, d, { alt: d.title + ' on ' + garment.name })) +
             '</div>' +
             '<div class="card__body">' +
               '<div class="card__row">' +
@@ -46,7 +46,7 @@
         return '<a class="card" href="shop.html#' + g.id + '" data-reveal>' +
             '<div class="card__media">' +
               window.GarmentMockup.render(g.id, g.colours[0], design.artHref,
-                { area: Store.printArea(g, design), alt: g.name }) +
+                Store.mockOpts(g, design, { alt: g.name })) +
             '</div>' +
             '<div class="card__body">' +
               '<div class="card__row">' +

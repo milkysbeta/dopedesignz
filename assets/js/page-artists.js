@@ -17,15 +17,25 @@
               Store.escapeHtml(a.location) + '</p>' +
             (a.links.length
               ? '<p style="margin-top:1rem">' + a.links.map(function (l) {
-                  return '<a class="link-arrow" href="' + Store.escapeHtml(l.href) + '">' +
+                  /* An artist's own profile lives on someone else's site, so it
+                   * opens in a new tab — following it in place would drop the
+                   * visitor out of the shop. rel guards the opener reference. */
+                  var ext = /^https?:/i.test(l.href);
+                  return '<a class="link-arrow" href="' + Store.escapeHtml(l.href) + '"' +
+                    (ext ? ' target="_blank" rel="noopener noreferrer"' : '') + '>' +
                     Store.escapeHtml(l.label) + '</a>';
                 }).join(' ') + '</p>'
               : '') +
           '</div>' +
           '<div>' +
             '<p class="lede" style="font-size:1rem">' + Store.escapeHtml(a.bio) + '</p>' +
-            '<p class="meta" style="margin-top:1.4rem">' + works.length + ' piece' +
-              (works.length === 1 ? '' : 's') + ' in rotation</p>' +
+            /* An artist can be on the roster before their first drop is up.
+             * Saying so is better than an unexplained "0 pieces" next to an
+             * empty grid, which just reads as a broken page. */
+            '<p class="meta" style="margin-top:1.4rem">' +
+              (works.length
+                ? works.length + ' piece' + (works.length === 1 ? '' : 's') + ' in rotation'
+                : 'First pieces landing soon') + '</p>' +
             '<div class="artist__works">' +
               works.map(function (d) {
                 return '<a class="artist__work" href="product.html?design=' + d.id + '" ' +

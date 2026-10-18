@@ -26,10 +26,26 @@
    *
    * `blend` maps to uEffBlend, which the art piece ships at 0 because its GUI
    * expects you to raise it — at 0 the surface is fully transparent and the
-   * canvas renders black. It has to be non-zero here for anything to appear. */
+   * canvas renders black. It has to be non-zero here for anything to appear.
+   *
+   * Motion is deliberately un-splashy. The shader keeps a wave alive for a long
+   * time (amplitude decays as exp(-age * 0.048), so ~20s to a third), which means
+   * one strong wave every few seconds reads as a distinct *splash* followed by
+   * dead air. Instead each preset emits many weak waves on a short cadence, so
+   * that at any moment several are overlapping at different ages and the surface
+   * simply breathes. `cadence` is seconds between waves, `str` their strength,
+   * `wSpd` how fast a ring expands and `splash` the overall amplitude. */
   var PRESETS = {
-    hero:  { reflect: 4.2, fresnel: 8.0, iriAmt: 0.82, hue: 0.62, sat: 1.15, prism: 12.0, flare: 1.6, grain: 0.022, swell: 5.5, blend: 0.92 },
-    quiet: { reflect: 3.4, fresnel: 9.0, iriAmt: 0.60, hue: 0.55, sat: 1.00, prism: 9.0,  flare: 1.0, grain: 0.028, swell: 9.0, blend: 0.58 }
+    hero: {
+      reflect: 4.2, fresnel: 8.0, iriAmt: 0.62, hue: 0.62, sat: 1.05,
+      prism: 9.0, flare: 0.85, grain: 0.022, blend: 0.92,
+      cadence: 1.9, str: 0.15, strVar: 0.09, wSpd: 0.62, splash: 0.95, drift: 0.34
+    },
+    quiet: {
+      reflect: 3.4, fresnel: 9.0, iriAmt: 0.46, hue: 0.55, sat: 0.95,
+      prism: 7.0, flare: 0.55, grain: 0.028, blend: 0.58,
+      cadence: 2.6, str: 0.11, strVar: 0.06, wSpd: 0.50, splash: 0.75, drift: 0.28
+    }
   };
   var preset = PRESETS[host.getAttribute('data-liquid-chrome')] || PRESETS.hero;
 
@@ -139,10 +155,10 @@
     uMicVol: 0, uMicBass: 0,
     uGrainStr: preset.grain,
     uGrainSize: 0.5,
-    uWSpd: 1.4,
-    uWSize: 0.4,
-    uWSoft: 0.85,
-    uSplash: 1.8
+    uWSpd: preset.wSpd,
+    uWSize: 0.52,      /* wider rings; a broad swell reads calmer than a tight one */
+    uWSoft: 1.15,      /* softer crest edges, so nothing snaps */
+    uSplash: preset.splash
   };
   Object.keys(STATIC_UNIFORMS).forEach(function (k) { f1(k, STATIC_UNIFORMS[k]); });
 
@@ -204,8 +220,30 @@
   /* --- Loop --------------------------------------------------------------- */
   var start = performance.now();
   var last = start;
-  var nextSwell = 1.2;
+  var nextSwell = preset.cadence * 0.5;
   var momentum = 0;
+
+  /* Where the next wave is born. A slow Lissajous wander keeps successive waves
+   * spread across the frame instead of stacking in one spot, which is what would
+   * turn an overlap back into a single pulsing blob. */
+  function waveOrigin(t) {
+    return [
+      0.5 + Math.cos(t * 0.11) * preset.drift,
+      0.5 + Math.sin(t * 0.083) * preset.drift * 0.88
+    ];
+  }
+
+  /* Start with the field already populated at staggered ages. Without this the
+   * first fifteen seconds are visibly emptier than the steady state, so the page
+   * loads flat and then fills — the one moment every visitor sees. */
+  (function seedField() {
+    for (var k = NW - 1; k >= 0; k--) {
+      var age = (k + 1) * preset.cadence;
+      var o = waveOrigin(-age);
+      addWave(o[0], o[1], preset.str + Math.random() * preset.strVar,
+              Math.cos(-age * 0.7) * 0.12, Math.sin(-age * 0.5) * 0.12, -age);
+    }
+  })();
 
   function frame(now) {
     requestAnimationFrame(frame);
@@ -217,27 +255,31 @@
 
     resize();
 
-    mouseX += (targetX - mouseX) * dt * 1.6;
-    mouseY += (targetY - mouseY) * dt * 1.6;
+    mouseX += (targetX - mouseX) * dt * 0.9;
+    mouseY += (targetY - mouseY) * dt * 0.9;
 
-    /* A swell every few seconds keeps the surface alive with no input at all. */
+    /* A steady procession of weak waves, rather than an occasional strong one.
+     * The cadence is short relative to how long a wave stays alive, so several
+     * are always overlapping at different ages and there is no moment where the
+     * surface goes still and then gets hit. */
     if (t > nextSwell) {
+      var o = waveOrigin(t);
       addWave(
-        0.5 + Math.cos(t * 0.31) * 0.34,
-        0.5 + Math.sin(t * 0.23) * 0.30,
-        0.55 + Math.random() * 0.35,
-        Math.cos(t * 0.7) * 0.25,
-        Math.sin(t * 0.5) * 0.25,
+        o[0], o[1],
+        preset.str + Math.random() * preset.strVar,
+        Math.cos(t * 0.7) * 0.12,
+        Math.sin(t * 0.5) * 0.12,
         t
       );
-      momentum = Math.min(momentum + 0.35, 1);
-      nextSwell = t + preset.swell * (0.6 + Math.random() * 0.8);
+      momentum = Math.min(momentum + 0.09, 0.4);
+      /* Jittered just enough to avoid a metronome, not enough to clump. */
+      nextSwell = t + preset.cadence * (0.85 + Math.random() * 0.3);
     }
-    momentum *= Math.exp(-dt / 2.6);
+    momentum *= Math.exp(-dt / 4.5);
 
     f1('uTime', t);
     f2('uMouse', mouseX, mouseY);
-    f1('uAzimuth', Math.sin(t * 0.05) * 0.35);
+    f1('uAzimuth', Math.sin(t * 0.021) * 0.28);
     f2('uMomP', mouseX, mouseY);
     f1('uMomS', momentum);
     v2v('uWP', wPos);
